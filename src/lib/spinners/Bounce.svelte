@@ -12,7 +12,6 @@
 
 <!-- Height and squash are separate elements, so the squash can pivot on the ball's base. -->
 <Root name="bounce" defaultDuration={durations.bounce} {...props}>
-	<span class="lsv-bounce-shadow"></span>
 	<span class="lsv-bounce-height"><span class="lsv-bounce-ball"></span></span>
 </Root>
 
@@ -36,21 +35,9 @@
 		animation: squash var(--_duration) linear infinite;
 	}
 
-	.lsv-bounce-shadow {
-		position: absolute;
-		top: 86.5%;
-		left: 35.4%;
-		width: 29.2%;
-		height: 6.25%;
-		border-radius: 50%;
-		background: currentColor;
-		animation: shadow var(--_duration) infinite;
-	}
-
 	/* After the shorthands above, which would otherwise reset these. */
 	.lsv-bounce-height,
-	.lsv-bounce-ball,
-	.lsv-bounce-shadow {
+	.lsv-bounce-ball {
 		/* Starts on the way up, so a still frame shows a round ball in the air, not a squashed one. */
 		animation-delay: calc(var(--_duration) * -0.3);
 		animation-play-state: var(--_play-state);
@@ -94,27 +81,9 @@
 		}
 	}
 
-	/* The shadow tightens and fades as the ball gets further from the floor. */
-	@keyframes shadow {
-		0%,
-		5%,
-		95%,
-		100% {
-			transform: scaleX(1);
-			opacity: 0.25;
-			animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
-		}
-		50% {
-			transform: scaleX(0.5);
-			opacity: 0.1;
-			animation-timing-function: cubic-bezier(0.11, 0, 0.5, 0);
-		}
-	}
-
 	@media (prefers-reduced-motion: reduce) {
 		.lsv-bounce-height,
-		.lsv-bounce-ball,
-		.lsv-bounce-shadow {
+		.lsv-bounce-ball {
 			animation-play-state: paused;
 		}
 	}
