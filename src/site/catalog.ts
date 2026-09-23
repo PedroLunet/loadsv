@@ -122,6 +122,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'hourglass',
+		name: 'Hourglass',
+		importName: 'Hourglass',
+		description: 'An hourglass draining its sand, then flipping over.',
+		options: []
+	},
+	{
 		slug: 'infinity-loop',
 		name: 'Infinity loop',
 		importName: 'InfinityLoop',
