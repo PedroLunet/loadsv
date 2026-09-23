@@ -1,6 +1,6 @@
 <!--
 	@component
-	Three electrons circling a nucleus, each on its own tilted orbit.
+	Three rings turning over inside a circle, each on its own axis.
 -->
 <script lang="ts">
 	import Root from '../internal/Root.svelte';
@@ -11,82 +11,52 @@
 </script>
 
 <Root name="atom" defaultDuration={durations.atom} {...props}>
-	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-		<g stroke-width="1.25" stroke-opacity="0.3">
-			{#each { length: 3 }, k (k)}
-				<ellipse cx="12" cy="12" rx="10" ry="3.75" transform="rotate({k * 60} 12 12)" />
-			{/each}
-		</g>
-		<circle cx="12" cy="12" r="2.25" fill="currentColor" stroke="none" />
-	</svg>
+	<span class="lsv-atom-shell"></span>
 	{#each { length: 3 }, k (k)}
-		<!-- Each orbit is tilted as a whole; inside it, two sweeps trace the ellipse. -->
-		<span class="lsv-atom-orbit" style:--k={k}>
-			<span class="lsv-atom-x"><span class="lsv-atom-y"></span></span>
-		</span>
+		<span class="lsv-atom-ring" style:--k={k}></span>
 	{/each}
 </Root>
 
 <style>
-	svg,
-	.lsv-atom-orbit {
+	.lsv-atom-shell,
+	.lsv-atom-ring {
 		position: absolute;
 		inset: 0;
-		width: 100%;
-		height: 100%;
+		box-sizing: border-box;
+		border: solid currentColor;
+		border-radius: 50%;
 	}
 
-	.lsv-atom-orbit {
-		transform: rotate(calc(var(--k) * 60deg));
+	.lsv-atom-shell {
+		border-width: calc(var(--lsv-size) * 1.5 / 24);
 	}
 
 	/*
-	 * Across and down, a quarter loop apart, both with sine easing: together that's exactly
-	 * the ellipse drawn behind. Each electron is a third of a loop ahead of the last.
+	 * Each ring turns over about an axis in the page, so it narrows to a line and opens
+	 * out again, and each axis is tilted 60° from the last. A third of a turn apart, the
+	 * widest ring sweeps round the circle, which reads as one sphere tumbling in place.
+	 * `rotate` tilts the axis after `transform` turns the ring, so the tilt holds still.
+	 * Thin strokes keep the rings apart as they open out against the circle.
 	 */
-	.lsv-atom-x {
-		position: absolute;
-		top: 42.7%;
-		left: 42.7%;
-		width: 14.6%;
-		height: 14.6%;
-		animation: sway calc(var(--_duration) / 2) cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
+	.lsv-atom-ring {
+		border-width: calc(var(--lsv-size) * 1.25 / 24);
+		rotate: calc(var(--k) * 60deg);
+		animation: tumble var(--_duration) linear infinite;
 		animation-delay: calc(var(--_duration) * var(--k) / -3);
 		animation-play-state: var(--_play-state);
 	}
 
-	.lsv-atom-y {
-		display: block;
-		width: 100%;
-		height: 100%;
-		border-radius: 50%;
-		background: currentColor;
-		animation: bob calc(var(--_duration) / 2) cubic-bezier(0.37, 0, 0.63, 1) infinite alternate;
-		animation-delay: calc(var(--_duration) * (var(--k) / -3 - 0.25));
-		animation-play-state: var(--_play-state);
-	}
-
-	@keyframes sway {
+	@keyframes tumble {
 		from {
-			transform: translateX(calc(var(--lsv-size) * 10 / 24));
+			transform: rotateY(0);
 		}
 		to {
-			transform: translateX(calc(var(--lsv-size) * -10 / 24));
-		}
-	}
-
-	@keyframes bob {
-		from {
-			transform: translateY(calc(var(--lsv-size) * -3.75 / 24));
-		}
-		to {
-			transform: translateY(calc(var(--lsv-size) * 3.75 / 24));
+			transform: rotateY(1turn);
 		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.lsv-atom-x,
-		.lsv-atom-y {
+		.lsv-atom-ring {
 			animation-play-state: paused;
 		}
 	}

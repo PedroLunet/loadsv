@@ -55,7 +55,7 @@ export const catalog: readonly Entry[] = [
 		slug: 'atom',
 		name: 'Atom',
 		importName: 'Atom',
-		description: 'Three electrons circling a nucleus, each on its own tilted orbit.',
+		description: 'Three rings turning over inside a circle, each on its own axis.',
 		options: []
 	},
 	{
