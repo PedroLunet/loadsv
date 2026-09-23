@@ -2,8 +2,8 @@
 
 A lightweight library of beautiful loading indicators for Svelte.
 
-- **12 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
-- **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy.
+- **24 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
+- **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy. The one exception is `Snake`, whose arc stretches with `stroke-dasharray` and repaints each frame; its turn still runs on the compositor.
 - **Reduced motion built in.** With `prefers-reduced-motion`, spinners hold still and gently breathe instead.
 - **Styles you can override.** The library's CSS carries zero specificity, so any class you pass wins.
 
@@ -37,20 +37,32 @@ Spinners paint with `currentColor`, so they pick up the text color around them:
 
 ## Spinners
 
-| Component      | Default duration | Extra props     |
-| -------------- | ---------------- | --------------- |
-| `Arc`          | 800ms            | `easing`, `cap` |
-| `Blocks`       | 1200ms           |                 |
-| `BouncingDots` | 1000ms           |                 |
-| `Classic`      | 1000ms           |                 |
-| `Comet`        | 800ms            |                 |
-| `Dual`         | 1000ms           | `cap`           |
-| `Flip`         | 1600ms           |                 |
-| `LinearDots`   | 1000ms           |                 |
-| `Pulse`        | 1200ms           |                 |
-| `Ring`         | 800ms            | `easing`, `cap` |
-| `Ripple`       | 1800ms           |                 |
-| `Wave`         | 1000ms           |                 |
+| Component       | Default duration | Extra props     |
+| --------------- | ---------------- | --------------- |
+| `Arc`           | 800ms            | `easing`, `cap` |
+| `Atom`          | 1200ms           |                 |
+| `Blocks`        | 1200ms           |                 |
+| `Bounce`        | 900ms            |                 |
+| `BouncingDots`  | 1000ms           |                 |
+| `CircularDots`  | 800ms            |                 |
+| `Classic`       | 1000ms           |                 |
+| `Clock`         | 1000ms           |                 |
+| `Comet`         | 800ms            |                 |
+| `Dual`          | 1000ms           | `cap`           |
+| `Eclipse`       | 1400ms           |                 |
+| `Flip`          | 1600ms           |                 |
+| `Hourglass`     | 2000ms           |                 |
+| `InfinityLoop`  | 1600ms           |                 |
+| `Leap`          | 1500ms           |                 |
+| `LinearDots`    | 1000ms           |                 |
+| `NewtonsCradle` | 1200ms           |                 |
+| `Pulse`         | 1200ms           |                 |
+| `Ring`          | 800ms            | `easing`, `cap` |
+| `Ripple`        | 1800ms           |                 |
+| `Slide`         | 2400ms           |                 |
+| `Snake`         | 1500ms           | `cap`           |
+| `Swirl`         | 1000ms           |                 |
+| `Wave`          | 1000ms           |                 |
 
 ## Props
 
