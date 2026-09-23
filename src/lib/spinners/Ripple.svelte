@@ -12,7 +12,7 @@
 
 <Root name="ripple" defaultDuration={durations.ripple} {...props}>
 	{#each { length: 3 }, i (i)}
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style:--i={i}>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style:--i={i}>
 			<circle cx="12" cy="12" r="10.5" />
 		</svg>
 	{/each}
@@ -30,13 +30,20 @@
 		animation-play-state: var(--_play-state);
 	}
 
-	/* From nothing, so a new ring appears as a point rather than popping in as a small circle. */
+	/*
+	 * From nothing, so a new ring appears as a point rather than popping in as a small circle.
+	 * The stroke scales with the ring, so a small ring is a thin one: it holds full strength
+	 * until it's well out, or it would fade before it's ever clearly seen.
+	 */
 	@keyframes spread {
-		from {
+		0% {
 			transform: scale(0);
 			opacity: 1;
 		}
-		to {
+		40% {
+			opacity: 1;
+		}
+		100% {
 			transform: scale(1);
 			opacity: 0;
 		}
