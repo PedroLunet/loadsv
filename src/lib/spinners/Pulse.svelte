@@ -14,7 +14,13 @@
 	<svg viewBox="0 0 24 24" fill="currentColor">
 		<circle cx="12" cy="12" r="3.5" />
 	</svg>
-	<svg class="lsv-pulse-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+	<svg
+		class="lsv-pulse-ring"
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="1.5"
+	>
 		<circle cx="12" cy="12" r="10.5" />
 	</svg>
 </Root>

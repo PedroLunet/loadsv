@@ -12,13 +12,7 @@
 
 <Root name="ripple" defaultDuration={durations.ripple} {...props}>
 	{#each { length: 3 }, i (i)}
-		<svg
-			viewBox="0 0 24 24"
-			fill="none"
-			stroke="currentColor"
-			stroke-width="1.5"
-			style:--i={i}
-		>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style:--i={i}>
 			<circle cx="12" cy="12" r="10.5" />
 		</svg>
 	{/each}

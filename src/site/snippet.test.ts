@@ -4,7 +4,7 @@ import { snippet, toText } from './snippet.js';
 describe('snippet', () => {
 	it('renders a single spinner without a wrapper', () => {
 		expect(toText(snippet('Arc', [{ size: 48 }]))).toBe(
-			["<script>", "\timport { Arc } from 'loadsv';", '</script>', '', '<Arc size={48} />'].join(
+			['<script>', "\timport { Arc } from 'loadsv';", '</script>', '', '<Arc size={48} />'].join(
 				'\n'
 			)
 		);

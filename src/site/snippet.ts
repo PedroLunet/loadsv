@@ -57,7 +57,13 @@ export function snippet(importName: string, elements: Props[]): Line[] {
 		return lines;
 	}
 
-	lines.push([t('punct', '<'), t('tag', 'div'), t('plain', ' '), ...prop('class', ROW_CLASS), t('punct', '>')]);
+	lines.push([
+		t('punct', '<'),
+		t('tag', 'div'),
+		t('plain', ' '),
+		...prop('class', ROW_CLASS),
+		t('punct', '>')
+	]);
 	for (const props of elements) lines.push(element(importName, props, '\t'));
 	lines.push([t('punct', '</'), t('tag', 'div'), t('punct', '>')]);
 	return lines;

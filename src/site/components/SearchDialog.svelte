@@ -24,7 +24,13 @@
 		if (name.startsWith(needle)) return 3;
 		if (name.includes(needle)) return 2;
 		// Descriptions match on word starts only, or short queries would hit half the catalog.
-		if (entry.description.toLowerCase().split(/\W+/).some((w) => w.startsWith(needle))) return 1;
+		if (
+			entry.description
+				.toLowerCase()
+				.split(/\W+/)
+				.some((w) => w.startsWith(needle))
+		)
+			return 1;
 		return 0;
 	}
 

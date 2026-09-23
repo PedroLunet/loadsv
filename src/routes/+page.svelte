@@ -25,7 +25,10 @@
 	<div
 		class="mt-8 flex items-center justify-between rounded-xl border border-neutral-100 bg-neutral-50/60 py-1.5 pr-1.5 pl-4 font-mono text-[13px]"
 	>
-		<code><span class="mr-2 text-neutral-400 select-none">$</span>npm install <span class="text-svelte">loadsv</span></code>
+		<code
+			><span class="mr-2 text-neutral-400 select-none">$</span>npm install
+			<span class="text-svelte">loadsv</span></code
+		>
 		<CopyButton text={install} label="Copy install command" />
 	</div>
 

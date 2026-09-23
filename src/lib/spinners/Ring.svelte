@@ -18,7 +18,13 @@
 </script>
 
 <Root name="ring" defaultDuration={durations.ring} {...props}>
-	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" data-easing={easing}>
+	<svg
+		viewBox="0 0 24 24"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2.5"
+		data-easing={easing}
+	>
 		<circle cx="12" cy="12" r="9.5" stroke-opacity="0.2" />
 		<circle
 			cx="12"
