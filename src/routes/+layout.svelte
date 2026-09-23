@@ -1,5 +1,7 @@
 <script lang="ts">
 	import './layout.css';
+	import { resolve } from '$app/paths';
+	import { GITHUB_URL, INSPIRATION_URL, NPM_URL } from '$site/links';
 	import Logo from '$site/components/Logo.svelte';
 	import SearchButton from '$site/components/SearchButton.svelte';
 	import SearchDialog from '$site/components/SearchDialog.svelte';
@@ -33,6 +35,26 @@
 		<main id="content" class="px-5 pt-12 pb-24 sm:px-8 lg:pt-16">
 			{@render children()}
 		</main>
+
+		<!-- The sidebar carries these links on large screens. -->
+		<footer class="px-5 pb-10 text-[13px] text-neutral-500 sm:px-8 lg:hidden">
+			<div class="mx-auto flex max-w-xl flex-col gap-3 border-t border-neutral-100 pt-6">
+				<ul class="flex gap-4">
+					<li><a href={GITHUB_URL} rel="external" class="hover:text-neutral-950">GitHub</a></li>
+					<li><a href={NPM_URL} rel="external" class="hover:text-neutral-950">npm</a></li>
+					<li><a href={resolve('/llms.txt')} class="hover:text-neutral-950">llms.txt</a></li>
+				</ul>
+				<p class="text-xs">
+					Made with care for Svelte. Inspired by
+					<a
+						href={INSPIRATION_URL}
+						rel="external"
+						class="text-neutral-700 underline decoration-neutral-300 underline-offset-2 hover:decoration-current"
+						>loading.dev</a
+					>.
+				</p>
+			</div>
+		</footer>
 	</div>
 </div>
 

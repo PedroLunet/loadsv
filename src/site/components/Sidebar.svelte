@@ -52,7 +52,8 @@
 		<a
 			href={INSPIRATION_URL}
 			rel="external"
-			class="text-neutral-700 underline-offset-2 hover:underline">loading.dev</a
+			class="text-neutral-700 underline decoration-neutral-300 underline-offset-2 hover:decoration-current"
+			>loading.dev</a
 		>.
 	</p>
 </aside>
