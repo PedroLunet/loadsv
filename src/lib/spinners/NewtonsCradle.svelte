@@ -1,6 +1,6 @@
 <!--
 	@component
-	Five hanging balls, the outer two swinging in turn.
+	Three balls in a row, the outer two swinging out in turn.
 -->
 <script lang="ts">
 	import Root from '../internal/Root.svelte';
@@ -11,63 +11,31 @@
 </script>
 
 <Root name="newtons-cradle" defaultDuration={durations['newtons-cradle']} {...props}>
-	<span class="lsv-newtons-cradle-bar"></span>
-	{#each { length: 5 }, i (i)}
+	{#each { length: 3 }, i (i)}
 		<span
-			class="lsv-newtons-cradle-pendulum"
+			class="lsv-newtons-cradle-ball"
 			class:lsv-newtons-cradle-left={i === 0}
-			class:lsv-newtons-cradle-right={i === 4}
+			class:lsv-newtons-cradle-right={i === 2}
 			style:--i={i}
 		></span>
 	{/each}
 </Root>
 
 <style>
-	.lsv-newtons-cradle-bar {
-		position: absolute;
-		top: 26%;
-		left: 8.3%;
-		width: 83.3%;
-		height: 4.2%;
-		border-radius: 999px;
-		background: currentColor;
-		opacity: 0.3;
-	}
-
 	/*
-	 * A pendulum spans pivot to ball and turns on its top edge, so string and ball swing as one.
-	 * Strings are short enough that a raised outer ball still stays inside the box.
+	 * Balls sit a pixel apart even at 16px, so the row never blurs into a bar. The row rests
+	 * just below center, so a raised ball and the resting row are centered together.
 	 */
-	.lsv-newtons-cradle-pendulum {
+	.lsv-newtons-cradle-ball {
 		position: absolute;
-		top: 28.1%;
-		left: calc(12.5% + var(--i) * 15%);
-		width: 15%;
-		height: 45%;
-		transform-origin: 50% 0;
-	}
-
-	/* The string starts under the bar, so the two faint layers never stack into dark spots. */
-	.lsv-newtons-cradle-pendulum::before {
-		content: '';
-		position: absolute;
-		top: 4.6%;
-		left: 41.7%;
-		width: 16.7%;
-		height: 78.7%;
-		background: currentColor;
-		opacity: 0.3;
-	}
-
-	.lsv-newtons-cradle-pendulum::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 33.3%;
+		top: 44.35%;
+		left: calc(18.75% + var(--i) * 22.92%);
+		width: 16.67%;
+		height: 16.67%;
 		border-radius: 50%;
 		background: currentColor;
+		/* An unseen string: each ball turns on a pivot above it, so it swings on an arc. */
+		transform-origin: 50% -118.75%;
 	}
 
 	.lsv-newtons-cradle-left,
@@ -89,7 +57,7 @@
 			animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
 		}
 		25% {
-			transform: rotate(20deg);
+			transform: rotate(36deg);
 			animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
 		}
 		50%,
@@ -105,7 +73,7 @@
 			animation-timing-function: cubic-bezier(0.61, 1, 0.88, 1);
 		}
 		75% {
-			transform: rotate(-20deg);
+			transform: rotate(-36deg);
 			animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
 		}
 		100% {

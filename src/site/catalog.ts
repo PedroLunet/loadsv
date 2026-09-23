@@ -160,7 +160,7 @@ export const catalog: readonly Entry[] = [
 		slug: 'newtons-cradle',
 		name: 'Newton’s cradle',
 		importName: 'NewtonsCradle',
-		description: 'Five hanging balls, the outer two swinging in turn.',
+		description: 'Three balls in a row, the outer two swinging out in turn.',
 		options: []
 	},
 	{
