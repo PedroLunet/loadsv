@@ -17,8 +17,8 @@
 <style>
 	span {
 		position: absolute;
-		inset: 20.8%;
-		border-radius: 14%;
+		inset: 25%;
+		border-radius: 16%;
 		background: currentColor;
 		animation: flip var(--_duration) infinite;
 		animation-play-state: var(--_play-state);

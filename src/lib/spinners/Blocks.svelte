@@ -19,11 +19,11 @@
 <style>
 	span {
 		position: absolute;
-		top: calc(6.25% + var(--row) * 31.25%);
-		left: calc(6.25% + var(--col) * 31.25%);
-		width: 25%;
-		height: 25%;
-		border-radius: 16%;
+		top: calc(8.3% + var(--row) * 31.25%);
+		left: calc(8.3% + var(--col) * 31.25%);
+		width: 20.8%;
+		height: 20.8%;
+		border-radius: 20%;
 		background: currentColor;
 		animation: shrink var(--_duration) cubic-bezier(0.65, 0, 0.35, 1) infinite;
 		/* Blocks on the same diagonal move together, so the sweep runs corner to corner. */
