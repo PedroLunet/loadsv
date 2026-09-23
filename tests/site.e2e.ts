@@ -1,19 +1,11 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type APIRequestContext, type Page } from '@playwright/test';
 
-const SPINNERS = [
-	'Arc',
-	'Blocks',
-	'Bouncing dots',
-	'Classic',
-	'Comet',
-	'Dual',
-	'Flip',
-	'Linear dots',
-	'Pulse',
-	'Ring',
-	'Ripple',
-	'Wave'
-];
+/** Every spinner the site publishes, in order, read from llms.txt so tests never hardcode the catalog. */
+async function published(request: APIRequestContext) {
+	const text = await (await request.get('/llms.txt')).text();
+	const entries = [...text.matchAll(/^- \[(.+?)\]\((\/spinners\/.+?\.md)\)/gm)];
+	return entries.map(([, name, markdown]) => ({ name, markdown }));
+}
 
 /** Fails the test on any console error, which is where hydration mismatches surface. */
 function watchConsole(page: Page) {
@@ -47,13 +39,14 @@ function motion(page: Page) {
 }
 
 test.describe('overview', () => {
-	test('lists every spinner, linking to its page', async ({ page }) => {
+	test('lists every spinner, linking to its page', async ({ page, request }) => {
 		const errors = watchConsole(page);
+		const spinners = await published(request);
 		await page.goto('/');
 
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Loading, made for Svelte.');
 		const cards = page.getByRole('main').getByRole('link');
-		await expect(cards).toHaveText(SPINNERS);
+		await expect(cards).toHaveText(spinners.map((s) => s.name));
 
 		await cards.filter({ hasText: 'Bouncing dots' }).click();
 		await expect(page).toHaveURL('/spinners/bouncing-dots');
@@ -61,10 +54,11 @@ test.describe('overview', () => {
 		expect(errors).toEqual([]);
 	});
 
-	test('spinners are hidden from assistive technology', async ({ page }) => {
+	test('spinners are hidden from assistive technology', async ({ page, request }) => {
+		const count = (await published(request)).length;
 		await page.goto('/');
 		const spinners = page.locator('main .lsv');
-		await expect(spinners).toHaveCount(SPINNERS.length);
+		await expect(spinners).toHaveCount(count);
 		for (const spinner of await spinners.all()) {
 			await expect(spinner).toHaveAttribute('aria-hidden', 'true');
 		}
@@ -129,16 +123,21 @@ test.describe('spinner page', () => {
 		);
 	});
 
-	test('links to its neighbours, wrapping around', async ({ page }) => {
-		await page.goto('/spinners/arc');
-		const nav = page.getByRole('navigation', { name: 'Other spinners' });
+	test('links to its neighbours in catalog order, wrapping around', async ({ page }) => {
+		await page.goto('/');
+		const hrefs = await page
+			.getByRole('main')
+			.getByRole('link')
+			.evaluateAll((links) => links.map((link) => link.getAttribute('href')));
 
+		await page.goto(hrefs[0]!);
+		const nav = page.getByRole('navigation', { name: 'Other spinners' });
 		await expect(nav.getByRole('link', { name: /Previous/ })).toHaveAttribute(
 			'href',
-			'/spinners/wave'
+			hrefs.at(-1)!
 		);
 		await nav.getByRole('link', { name: /Next/ }).click();
-		await expect(page).toHaveURL('/spinners/blocks');
+		await expect(page).toHaveURL(hrefs[1]!);
 	});
 
 	test('only offers options the spinner has', async ({ page }) => {
@@ -160,18 +159,19 @@ test.describe('search', () => {
 		await expect(dialog).toBeVisible();
 		await expect(input).toBeFocused();
 
-		// Both dot spinners by name, then Pulse, whose description mentions a dot.
-		await input.fill('dot');
+		// Ring and Ripple start with "ri", so they lead; descriptions mentioning rings follow.
+		await input.fill('ri');
 		const options = dialog.getByRole('option');
-		await expect(options).toHaveText([/Bouncing dots/, /Linear dots/, /Pulse/]);
+		await expect(options.nth(0)).toContainText('Ring');
+		await expect(options.nth(1)).toContainText('Ripple');
 		await expect(options.first()).toHaveAttribute('aria-selected', 'true');
 
 		await input.press('ArrowDown');
 		await expect(options.nth(1)).toHaveAttribute('aria-selected', 'true');
-		await expect(input).toHaveAttribute('aria-activedescendant', /linear-dots$/);
+		await expect(input).toHaveAttribute('aria-activedescendant', /ripple$/);
 
 		await input.press('Enter');
-		await expect(page).toHaveURL('/spinners/linear-dots');
+		await expect(page).toHaveURL('/spinners/ripple');
 		await expect(dialog).toBeHidden();
 	});
 
@@ -261,14 +261,19 @@ test.describe('motion', () => {
 });
 
 test.describe('for language models', () => {
-	test('llms.txt indexes every spinner page', async ({ request }) => {
+	test('llms.txt indexes a Markdown page for every spinner', async ({ request }) => {
 		const response = await request.get('/llms.txt');
 		expect(response.ok()).toBe(true);
 		expect(response.headers()['content-type']).toContain('text/plain');
+		expect(await response.text()).toMatch(/^# loadsv\n/);
 
-		const text = await response.text();
-		expect(text).toMatch(/^# loadsv\n/);
-		for (const name of SPINNERS) expect(text).toContain(`- [${name}](/spinners/`);
+		const spinners = await published(request);
+		expect(spinners.length).toBeGreaterThan(0);
+		for (const { name, markdown } of spinners) {
+			const page = await request.get(markdown);
+			expect(page.ok(), markdown).toBe(true);
+			expect((await page.text()).startsWith(`# ${name}\n`), markdown).toBe(true);
+		}
 	});
 
 	test('every spinner page has a Markdown version', async ({ page, request }) => {
