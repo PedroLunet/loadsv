@@ -31,17 +31,17 @@
 
 	<ul class="mt-auto">
 		<li>
-			<a href={GITHUB_URL} class="{item} flex items-center gap-2">
+			<a href={GITHUB_URL} rel="external" class="{item} flex items-center gap-2">
 				<Icon name="github" size={14} /> GitHub
 			</a>
 		</li>
 		<li>
-			<a href={NPM_URL} class="{item} flex items-center gap-2">
+			<a href={NPM_URL} rel="external" class="{item} flex items-center gap-2">
 				<Icon name="npm" size={14} /> npm
 			</a>
 		</li>
 		<li>
-			<a href="/llms.txt" class="{item} flex items-center gap-2">
+			<a href={resolve('/llms.txt')} class="{item} flex items-center gap-2">
 				<Icon name="file" size={14} /> llms.txt
 			</a>
 		</li>
@@ -49,8 +49,10 @@
 
 	<p class="border-t border-neutral-200/70 px-2 pt-4 text-xs leading-relaxed text-neutral-500">
 		Made with care for Svelte. Inspired by
-		<a href={INSPIRATION_URL} class="text-neutral-700 underline-offset-2 hover:underline"
-			>loading.dev</a
+		<a
+			href={INSPIRATION_URL}
+			rel="external"
+			class="text-neutral-700 underline-offset-2 hover:underline">loading.dev</a
 		>.
 	</p>
 </aside>
