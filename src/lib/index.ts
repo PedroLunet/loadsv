@@ -9,6 +9,7 @@ export { default as Dual } from './spinners/Dual.svelte';
 export { default as Eclipse } from './spinners/Eclipse.svelte';
 export { default as Flip } from './spinners/Flip.svelte';
 export { default as InfinityLoop } from './spinners/InfinityLoop.svelte';
+export { default as Leap } from './spinners/Leap.svelte';
 export { default as LinearDots } from './spinners/LinearDots.svelte';
 export { default as Pulse } from './spinners/Pulse.svelte';
 export { default as Ring } from './spinners/Ring.svelte';

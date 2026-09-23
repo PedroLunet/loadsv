@@ -23,7 +23,8 @@ export const durations = {
 	swirl: 1000,
 	eclipse: 1400,
 	'infinity-loop': 1600,
-	slide: 2400
+	slide: 2400,
+	leap: 1500
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;

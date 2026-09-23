@@ -122,6 +122,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'leap',
+		name: 'Leap',
+		importName: 'Leap',
+		description: 'Three dots in a row, the last one leaping over the others to the front.',
+		options: []
+	},
+	{
 		slug: 'linear-dots',
 		name: 'Linear dots',
 		importName: 'LinearDots',
