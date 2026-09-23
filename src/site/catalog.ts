@@ -115,6 +115,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'infinity-loop',
+		name: 'Infinity loop',
+		importName: 'InfinityLoop',
+		description: 'A bead running a figure-eight along a faint track.',
+		options: []
+	},
+	{
 		slug: 'linear-dots',
 		name: 'Linear dots',
 		importName: 'LinearDots',

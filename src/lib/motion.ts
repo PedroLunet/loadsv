@@ -21,7 +21,8 @@ export const durations = {
 	clock: 1000,
 	'circular-dots': 800,
 	swirl: 1000,
-	eclipse: 1400
+	eclipse: 1400,
+	'infinity-loop': 1600
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
