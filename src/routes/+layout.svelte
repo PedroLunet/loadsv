@@ -1,6 +1,8 @@
 <script lang="ts">
 	import './layout.css';
 	import Logo from '$site/components/Logo.svelte';
+	import SearchButton from '$site/components/SearchButton.svelte';
+	import SearchDialog from '$site/components/SearchDialog.svelte';
 	import Sidebar from '$site/components/Sidebar.svelte';
 
 	let { children } = $props();
@@ -25,6 +27,7 @@
 			class="sticky top-0 z-10 flex items-center justify-between border-b border-neutral-100 bg-white/80 px-3 py-2.5 backdrop-blur-md lg:hidden"
 		>
 			<Logo />
+			<SearchButton compact />
 		</header>
 
 		<main id="content" class="px-5 pt-12 pb-24 sm:px-8 lg:pt-16">
@@ -32,3 +35,5 @@
 		</main>
 	</div>
 </div>
+
+<SearchDialog />

@@ -5,6 +5,7 @@
 	import { GITHUB_URL, INSPIRATION_URL, NPM_URL } from '$site/links';
 	import Icon from './Icon.svelte';
 	import Logo from './Logo.svelte';
+	import SearchButton from './SearchButton.svelte';
 
 	const current = (href: string) => (page.url.pathname === href ? 'page' : undefined);
 
@@ -16,6 +17,7 @@
 	class="sticky top-0 hidden h-dvh flex-col gap-5 overflow-y-auto border-r border-neutral-100 bg-neutral-50/70 px-3 py-4 text-[13px] lg:flex"
 >
 	<Logo />
+	<SearchButton />
 
 	<nav aria-label="Docs" class="flex flex-col gap-4">
 		<a href={resolve('/')} class={item} aria-current={current(resolve('/'))}>Overview</a>
