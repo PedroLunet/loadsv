@@ -56,9 +56,15 @@
 		animation-play-state: var(--_play-state);
 	}
 
-	/* Quadratic curves, like real gravity: rising decelerates, falling accelerates. */
+	/*
+	 * Quadratic curves, like real gravity: rising decelerates, falling accelerates. The ball
+	 * stays down for the tenth of a loop around 0%, so it squashes against the floor, not
+	 * in the air above it.
+	 */
 	@keyframes rise {
 		0%,
+		5%,
+		95%,
 		100% {
 			transform: translateY(0);
 			animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
@@ -69,18 +75,21 @@
 		}
 	}
 
-	/* Flattens on impact, stretches with speed, and is round at the top of the bounce. */
+	/*
+	 * Arrives stretched with speed, flattens while it's down, and leaves stretched again,
+	 * round by the time it slows near the top.
+	 */
 	@keyframes squash {
 		0%,
 		100% {
 			transform: scale(1.35, 0.7);
 		}
-		8%,
-		92% {
+		5%,
+		95% {
 			transform: scale(0.9, 1.12);
 		}
-		22%,
-		78% {
+		20%,
+		80% {
 			transform: scale(1);
 		}
 	}
@@ -88,6 +97,8 @@
 	/* The shadow tightens and fades as the ball gets further from the floor. */
 	@keyframes shadow {
 		0%,
+		5%,
+		95%,
 		100% {
 			transform: scaleX(1);
 			opacity: 0.25;
