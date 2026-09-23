@@ -11,7 +11,7 @@
 </script>
 
 <Root name="comet" defaultDuration={durations.comet} {...props}>
-	<span class="ring"><span class="head"></span></span>
+	<span class="lsv-comet-ring"><span class="lsv-comet-head"></span></span>
 </Root>
 
 <style>
@@ -19,7 +19,7 @@
 	 * Same geometry as the stroked spinners (r = 9.5, stroke 2.5 in a 24 box):
 	 * the ring sits 1.25/24 in from the edge and its stroke is 2.5/21.5 of its width.
 	 */
-	.ring {
+	.lsv-comet-ring {
 		position: absolute;
 		inset: 5.2%;
 		border-radius: 50%;
@@ -30,7 +30,7 @@
 	}
 
 	/* Rounds off the bright end, like a stroke with a round cap. */
-	.head {
+	.lsv-comet-head {
 		position: absolute;
 		top: 0;
 		left: 50%;
@@ -48,7 +48,7 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
-		.ring {
+		.lsv-comet-ring {
 			animation-play-state: paused;
 		}
 	}

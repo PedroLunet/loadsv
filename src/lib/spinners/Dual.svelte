@@ -22,7 +22,7 @@
 	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 		<circle cx="12" cy="12" r="9.5" stroke-dasharray="20 60" stroke-linecap={linecap} />
 	</svg>
-	<svg class="inner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+	<svg class="lsv-dual-inner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 		<circle
 			cx="12"
 			cy="12"
@@ -44,7 +44,7 @@
 		animation-play-state: var(--_play-state);
 	}
 
-	.inner {
+	.lsv-dual-inner {
 		animation-direction: reverse;
 	}
 
