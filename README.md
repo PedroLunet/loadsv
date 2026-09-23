@@ -1,42 +1,122 @@
-# sv
+# loadsv
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A lightweight library of beautiful loading indicators for Svelte.
 
-## Creating a project
+- **12 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
+- **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy.
+- **Reduced motion built in.** With `prefers-reduced-motion`, spinners hold still and gently breathe instead.
+- **Styles you can override.** The library's CSS carries zero specificity, so any class you pass wins.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+## Install
 
 ```sh
-# recreate this project
-npx sv@0.17.1 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" playwright --install npm loadySvelte
+npm install loadsv
 ```
 
-## Developing
+Requires Svelte 5.16 or later.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Usage
+
+```svelte
+<script>
+	import { Arc } from 'loadsv';
+</script>
+
+<Arc />
+<Arc size={32} color="#ff3e00" />
+<Arc duration={1200} easing="stacked" />
+```
+
+Spinners paint with `currentColor`, so they pick up the text color around them:
+
+```svelte
+<button class="text-blue-600">
+	<Arc size={16} /> Saving
+</button>
+```
+
+## Spinners
+
+| Component      | Default duration | Extra props     |
+| -------------- | ---------------- | --------------- |
+| `Arc`          | 800ms            | `easing`, `cap` |
+| `Blocks`       | 1200ms           |                 |
+| `BouncingDots` | 1000ms           |                 |
+| `Classic`      | 1000ms           |                 |
+| `Comet`        | 800ms            |                 |
+| `Dual`         | 1000ms           | `cap`           |
+| `Flip`         | 1600ms           |                 |
+| `LinearDots`   | 1000ms           |                 |
+| `Pulse`        | 1200ms           |                 |
+| `Ring`         | 800ms            | `easing`, `cap` |
+| `Ripple`       | 1800ms           |                 |
+| `Wave`         | 1000ms           |                 |
+
+## Props
+
+Every spinner accepts:
+
+| Prop        | Type                    | Default        | Description                         |
+| ----------- | ----------------------- | -------------- | ----------------------------------- |
+| `size`      | `number`                | `20`           | Width and height in pixels.         |
+| `color`     | `string`                | `currentColor` | Any CSS color.                      |
+| `duration`  | `number`                | per spinner    | Length of one loop in milliseconds. |
+| `playState` | `'running' \| 'paused'` | `'running'`    | Pauses or resumes the animation.    |
+
+Any other attribute, including `class` and `style`, is forwarded to the root `<span>`.
+
+Some spinners take more:
+
+| Prop     | Type                                     | Default    | Description                                                                                           |
+| -------- | ---------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------- |
+| `easing` | `'linear' \| 'ease-in-out' \| 'stacked'` | `'linear'` | How it moves through each turn. `stacked` layers the other two, so the speed swells without stopping. |
+| `cap`    | `'round' \| 'flat'`                      | `'round'`  | How the ends of the stroke are drawn.                                                                 |
+
+The types are exported too: `SpinnerProps`, `PlayState`, `Easing` and `Cap`.
+
+## CSS custom properties
+
+Set these on any ancestor to control every spinner inside it. A prop on a single spinner still wins.
+
+| Property           | Example  | Effect                               |
+| ------------------ | -------- | ------------------------------------ |
+| `--lsv-duration`   | `1200ms` | Loop length, replacing each default. |
+| `--lsv-play-state` | `paused` | Pauses or resumes a whole subtree.   |
+
+```svelte
+<!-- Freeze every spinner in a panel while it's collapsed. -->
+<section style:--lsv-play-state={open ? 'running' : 'paused'}>…</section>
+```
+
+## Accessibility
+
+Spinners are decorative and render with `aria-hidden="true"`, so they never announce anything on their own. Put the loading state on the element that is busy, in words:
+
+```svelte
+<button disabled={saving} aria-busy={saving}>
+	{#if saving}<Arc size={14} />{/if}
+	{saving ? 'Saving…' : 'Save'}
+</button>
+```
+
+When the user prefers reduced motion, spinners stop moving and fade gently in and out instead, so they still read as "working". There's nothing to configure.
+
+## Credits
+
+Inspired by [loading.dev](https://loading.dev). Same ideas, written from scratch for Svelte.
+
+## Development
+
+The package lives in `src/lib`. The docs site, built with SvelteKit and deployed to Cloudflare Workers, lives in `src/routes` and `src/site`.
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm run dev      # docs site with hot reload
+npm run test     # unit tests, then end-to-end tests against a production build
+npm run package  # build the package into dist/ and lint it with publint
+npm run build    # build the docs site
+npm run preview  # serve the built site locally with Wrangler
 ```
 
-## Building
+## License
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+MIT
