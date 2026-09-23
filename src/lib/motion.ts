@@ -15,7 +15,8 @@ export const durations = {
 	'linear-dots': 1000,
 	wave: 1000,
 	pulse: 1200,
-	ripple: 1800
+	ripple: 1800,
+	blocks: 1200
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
