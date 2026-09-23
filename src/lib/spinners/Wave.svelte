@@ -17,15 +17,22 @@
 </Root>
 
 <style>
+	/*
+	 * A bar runs from 6.4 of 24 at rest to 16 at full height. Scaling one rounded bar is
+	 * what keeps it on the compositor, but it scales the round ends too, so each bar is
+	 * drawn at the height between the two (√(6.4 × 16) ≈ 10.1). Its ends then squash a
+	 * little at rest and stretch a little at full height, and read as round at both,
+	 * instead of flattening to square whenever the bar is short.
+	 */
 	span {
 		position: absolute;
-		top: 16.7%;
+		top: 28.9%;
 		left: calc(11.5% + var(--i) * 16.7%);
 		width: 10.4%;
-		height: 66.7%;
+		height: 42.2%;
 		border-radius: 999px;
 		background: currentColor;
-		transform: scaleY(0.4);
+		transform: scaleY(0.632);
 		animation: rise var(--_duration) ease-in-out infinite;
 		animation-delay: calc(var(--_duration) * (var(--i) / 10 - 1));
 		animation-play-state: var(--_play-state);
@@ -34,10 +41,10 @@
 	@keyframes rise {
 		0%,
 		100% {
-			transform: scaleY(0.4);
+			transform: scaleY(0.632);
 		}
 		50% {
-			transform: scaleY(1);
+			transform: scaleY(1.581);
 		}
 	}
 
