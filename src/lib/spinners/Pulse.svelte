@@ -33,9 +33,13 @@
 		height: 100%;
 	}
 
-	/* Starts at the dot's edge (3.5 / 10.5), so the ring grows out of it rather than from nothing. */
+	/*
+	 * Starts hidden under the dot: its outer edge (11.25 × 0.3) is just inside the dot's 3.5,
+	 * so the ring grows out from beneath it. Any larger and the stroke would show around the
+	 * dot the moment each loop restarts, making the dot swell for a frame.
+	 */
 	.lsv-pulse-ring {
-		transform: scale(0.33);
+		transform: scale(0.3);
 		animation:
 			grow var(--_duration) cubic-bezier(0.23, 1, 0.32, 1) infinite,
 			fade var(--_duration) linear infinite;
