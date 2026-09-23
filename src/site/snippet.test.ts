@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { snippet, toText } from './snippet.js';
+import { highlight, snippet, toText } from './snippet.js';
 
 describe('snippet', () => {
 	it('renders a single spinner without a wrapper', () => {
@@ -32,6 +32,41 @@ describe('snippet', () => {
 		]);
 		expect(line.filter((token) => token.kind === 'string').map((token) => token.text)).toEqual([
 			'"#ff3e00"'
+		]);
+	});
+});
+
+describe('highlight', () => {
+	const source = [
+		'<button disabled={saving}>',
+		'\t{#if saving}<Arc size={14} />{/if}',
+		"\t{saving ? 'Saving…' : 'Save'}",
+		'</button>'
+	].join('\n');
+
+	const kinds = (kind: string) =>
+		highlight(source)
+			.flat()
+			.filter((token) => token.kind === kind)
+			.map((token) => token.text);
+
+	it('keeps the source exactly', () => {
+		expect(toText(highlight(source))).toBe(source);
+	});
+
+	it('colours tags, attributes, block keywords, numbers and strings', () => {
+		expect(kinds('tag')).toEqual(['button', 'Arc', 'button']);
+		expect(kinds('attr')).toEqual(['disabled', 'size']);
+		expect(kinds('keyword')).toEqual(['if', 'if']);
+		expect(kinds('number')).toEqual(['14']);
+		expect(kinds('string')).toEqual(["'Saving…'", "'Save'"]);
+	});
+
+	it('knows import statements', () => {
+		const [line] = highlight("import { Arc } from 'loadsv';");
+		expect(line.filter((token) => token.kind === 'keyword').map((token) => token.text)).toEqual([
+			'import',
+			'from'
 		]);
 	});
 });

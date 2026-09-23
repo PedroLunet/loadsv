@@ -69,6 +69,39 @@ export function snippet(importName: string, elements: Props[]): Line[] {
 	return lines;
 }
 
+const syntax =
+	/(<\/?)([A-Za-z][\w.]*)|('[^'\n]*'|"[^"\n]*")|(\{[#:/@])(\w+)|\b(import|from)\b|([A-Za-z][\w:-]*)(?==)|\b(\d+)\b|(\/?>|[{}=;,()?:])|([\s\S])/g;
+
+/**
+ * Colours free-form Svelte for examples that aren't a single spinner: tags, attributes,
+ * strings, block keywords, numbers and punctuation. Small on purpose; the examples are too.
+ */
+export function highlight(source: string): Line[] {
+	return source.split('\n').map((text) => {
+		const line: Line = [];
+		const push = (kind: TokenKind, value: string) => {
+			const last = line.at(-1);
+			if (last?.kind === kind) last.text += value;
+			else line.push(t(kind, value));
+		};
+		for (const m of text.matchAll(syntax)) {
+			if (m[1]) {
+				push('punct', m[1]);
+				push('tag', m[2]);
+			} else if (m[3]) push('string', m[3]);
+			else if (m[4]) {
+				push('punct', m[4]);
+				push('keyword', m[5]);
+			} else if (m[6]) push('keyword', m[6]);
+			else if (m[7]) push('attr', m[7]);
+			else if (m[8]) push('number', m[8]);
+			else if (m[9]) push('punct', m[9]);
+			else push('plain', m[10]);
+		}
+		return line;
+	});
+}
+
 export function toText(lines: Line[]): string {
 	return lines.map((line) => line.map((token) => token.text).join('')).join('\n');
 }
