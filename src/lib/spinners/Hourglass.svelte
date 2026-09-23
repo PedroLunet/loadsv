@@ -11,28 +11,21 @@
 </script>
 
 <!--
-	The two heaps of sand are exact mirror images, so once the glass has turned over, the
-	full bottom looks just like the full top: the loop restarts without a visible jump.
+	Each heap of sand is the exact shape of its half of the glass, and the two halves are
+	mirror images. Once the glass has turned over, the full bottom looks just like the full
+	top, so the loop restarts without a visible jump.
 -->
 <Root name="hourglass" defaultDuration={durations.hourglass} {...props}>
 	<span class="lsv-hourglass-glass">
-		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round">
-			<path d="M6 3.25H18M6 20.75H18" stroke-width="2.5" />
-			<path
-				d="M7.5 4.5 11.25 12 7.5 19.5M16.5 4.5 12.75 12 16.5 19.5"
-				stroke-width="1.5"
-				stroke-opacity="0.35"
-				stroke-linejoin="round"
-			/>
+		<!-- Faded as a whole, so the stroke that rounds the corners never darkens the fill. -->
+		<svg class="lsv-hourglass-track" viewBox="0 0 24 24">
+			<path d="M6.5 4H17.5L12 12ZM6.5 20H17.5L12 12Z" />
 		</svg>
-		<svg class="lsv-hourglass-top" viewBox="0 0 24 24" fill="currentColor">
-			<path d="M9 5.5H15L12 11.5Z" />
+		<svg class="lsv-hourglass-top" viewBox="0 0 24 24">
+			<path d="M6.5 4H17.5L12 12Z" />
 		</svg>
-		<svg class="lsv-hourglass-stream" viewBox="0 0 24 24" stroke="currentColor">
-			<path d="M12 11.5V18.5" />
-		</svg>
-		<svg class="lsv-hourglass-bottom" viewBox="0 0 24 24" fill="currentColor">
-			<path d="M9 18.5H15L12 12.5Z" />
+		<svg class="lsv-hourglass-bottom" viewBox="0 0 24 24">
+			<path d="M6.5 20H17.5L12 12Z" />
 		</svg>
 	</span>
 </Root>
@@ -46,32 +39,36 @@
 		height: 100%;
 	}
 
+	svg {
+		fill: currentColor;
+		stroke: currentColor;
+		stroke-width: 2.5;
+		stroke-linejoin: round;
+	}
+
+	.lsv-hourglass-track {
+		opacity: 0.2;
+	}
+
 	.lsv-hourglass-glass {
 		animation: turn var(--_duration) infinite;
 	}
 
-	/* The top heap shrinks into the neck; the bottom one grows up from its base. */
+	/* The top heap shrinks into the neck; the bottom one grows up from the floor. */
 	.lsv-hourglass-top {
-		transform-origin: 50% 47.9%;
+		transform-origin: 50% 50%;
 		animation: drain var(--_duration) infinite;
 	}
 
 	.lsv-hourglass-bottom {
-		transform-origin: 50% 77.1%;
+		transform-origin: 50% 88.5%;
 		animation: fill var(--_duration) infinite;
-	}
-
-	/* The stream shortens as the heap rises to meet it. */
-	.lsv-hourglass-stream {
-		transform-origin: 50% 47.9%;
-		animation: pour var(--_duration) infinite;
 	}
 
 	/* After the shorthands above, which would otherwise reset these. */
 	.lsv-hourglass-glass,
 	.lsv-hourglass-top,
-	.lsv-hourglass-bottom,
-	.lsv-hourglass-stream {
+	.lsv-hourglass-bottom {
 		/* Starts mid-pour, so a still frame shows sand in both halves. */
 		animation-delay: calc(var(--_duration) * -0.3);
 		animation-play-state: var(--_play-state);
@@ -114,30 +111,10 @@
 		}
 	}
 
-	@keyframes pour {
-		0% {
-			opacity: 0;
-			transform: scaleY(1);
-			animation-timing-function: linear(0, 0.316 10%, 0.5 25%, 0.707 50%, 0.866 75%, 1);
-		}
-		3% {
-			opacity: 1;
-		}
-		68% {
-			opacity: 1;
-		}
-		72%,
-		100% {
-			opacity: 0;
-			transform: scaleY(0.14);
-		}
-	}
-
 	@media (prefers-reduced-motion: reduce) {
 		.lsv-hourglass-glass,
 		.lsv-hourglass-top,
-		.lsv-hourglass-bottom,
-		.lsv-hourglass-stream {
+		.lsv-hourglass-bottom {
 			animation-play-state: paused;
 		}
 	}
