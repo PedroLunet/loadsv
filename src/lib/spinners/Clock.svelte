@@ -12,14 +12,14 @@
 
 <!-- One <svg> per hand, so each turn is a plain element transform the compositor can run. -->
 <Root name="clock" defaultDuration={durations.clock} {...props}>
-	<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-		<circle cx="12" cy="12" r="9.5" stroke-opacity="0.2" />
+	<svg viewBox="0 0 24 24" fill="currentColor">
+		<circle cx="12" cy="12" r="10" fill-opacity="0.12" />
 	</svg>
 	<svg
 		class="lsv-clock-hour"
 		viewBox="0 0 24 24"
 		stroke="currentColor"
-		stroke-width="2.5"
+		stroke-width="2"
 		stroke-linecap="round"
 	>
 		<path d="M12 12V8.5" />
@@ -28,7 +28,7 @@
 		class="lsv-clock-minute"
 		viewBox="0 0 24 24"
 		stroke="currentColor"
-		stroke-width="2.5"
+		stroke-width="2"
 		stroke-linecap="round"
 	>
 		<path d="M12 12V6" />
