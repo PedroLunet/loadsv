@@ -17,7 +17,8 @@ export const durations = {
 	pulse: 1200,
 	ripple: 1800,
 	blocks: 1200,
-	flip: 1600
+	flip: 1600,
+	clock: 1000
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;

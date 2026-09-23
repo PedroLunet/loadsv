@@ -73,6 +73,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'clock',
+		name: 'Clock',
+		importName: 'Clock',
+		description: 'Two hands on a faint dial, one sweeping, one creeping.',
+		options: []
+	},
+	{
 		slug: 'comet',
 		name: 'Comet',
 		importName: 'Comet',
