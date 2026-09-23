@@ -11,7 +11,8 @@ export const durations = {
 	dual: 1000,
 	comet: 800,
 	classic: 1000,
-	'bouncing-dots': 1000
+	'bouncing-dots': 1000,
+	'linear-dots': 1000
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
