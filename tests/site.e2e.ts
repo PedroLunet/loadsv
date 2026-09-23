@@ -100,6 +100,31 @@ test.describe('browse', () => {
 	});
 });
 
+test.describe('in an app', () => {
+	test('one choice swaps the spinner everywhere, and a redeploy runs', async ({ page }) => {
+		const errors = watchConsole(page);
+		await page.goto('/in-an-app');
+		await hydrated(page);
+		const main = page.getByRole('main');
+
+		const arc = main
+			.getByRole('group', { name: 'Spinner' })
+			.getByRole('button', { name: 'Arc', exact: true });
+		await arc.click();
+		await expect(arc).toHaveAttribute('aria-pressed', 'true');
+		await expect(main.locator('pre')).toContainText("import { Arc } from 'loadsv';");
+		await expect(main.getByRole('link', { name: 'Open its playground' })).toHaveAttribute(
+			'href',
+			'/spinners/arc'
+		);
+
+		await main.getByRole('button', { name: 'Redeploy' }).click();
+		await expect(main.getByRole('status')).toContainText('Deploying loadsv-docs');
+		await expect(main.getByText('Redeploy of feat: add Snake spinner')).toBeVisible();
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('spinner page', () => {
 	test('customizer rewrites the snippet and resets it', async ({ page }) => {
 		const errors = watchConsole(page);
