@@ -66,6 +66,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'circular-dots',
+		name: 'Circular dots',
+		importName: 'CircularDots',
+		description: 'Eight dots in a ring, the brightest hopping from one to the next.',
+		options: []
+	},
+	{
 		slug: 'classic',
 		name: 'Classic',
 		importName: 'Classic',
