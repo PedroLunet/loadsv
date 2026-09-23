@@ -125,6 +125,37 @@ test.describe('in an app', () => {
 	});
 });
 
+test.describe('view dock', () => {
+	test('switches views and marks the one you are on', async ({ page }) => {
+		const errors = watchConsole(page);
+		await page.goto('/');
+		await hydrated(page);
+		const dock = page.getByRole('navigation', { name: 'Views' });
+		await expect(dock.getByRole('link', { name: 'Try it' })).toHaveAttribute(
+			'aria-current',
+			'page'
+		);
+
+		for (const [name, path] of [
+			['Browse', '/browse'],
+			['In an app', '/in-an-app'],
+			['Try it', '/']
+		]) {
+			await dock.getByRole('link', { name }).click();
+			await expect(page).toHaveURL(path);
+			await expect(dock.getByRole('link', { name })).toHaveAttribute('aria-current', 'page');
+			await expect(dock.locator('[aria-current]')).toHaveCount(1);
+		}
+		expect(errors).toEqual([]);
+	});
+
+	test('stays out of the docs, which have the sidebar', async ({ page }) => {
+		await page.goto('/spinners/arc');
+		await expect(page.getByRole('complementary').first()).toBeVisible();
+		await expect(page.getByRole('navigation', { name: 'Views' })).toHaveCount(0);
+	});
+});
+
 test.describe('spinner page', () => {
 	test('customizer rewrites the snippet and resets it', async ({ page }) => {
 		const errors = watchConsole(page);
