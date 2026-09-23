@@ -76,7 +76,7 @@
 
 <figure class="overflow-hidden rounded-2xl border border-neutral-100">
 	<div class="flex flex-col sm:flex-row">
-		<div class="relative grid h-64 flex-1 place-items-center bg-neutral-50/60">
+		<div class="relative grid h-56 place-items-center bg-neutral-50/60 sm:h-64 sm:flex-1">
 			<div style:opacity={opacity / 100}>
 				<Spinner {...spinnerProps} {playState} />
 			</div>
