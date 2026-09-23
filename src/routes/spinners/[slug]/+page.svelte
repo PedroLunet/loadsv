@@ -3,6 +3,7 @@
 	import { neighbours } from '$site/catalog';
 	import Demo from '$site/components/Demo.svelte';
 	import Prose from '$site/components/Prose.svelte';
+	import Toc from '$site/components/Toc.svelte';
 	import { PREVIEW_SIZE, sections } from '$site/docs';
 
 	let { data } = $props();
@@ -10,6 +11,7 @@
 	const entry = $derived(data.entry);
 	const content = $derived(sections(entry));
 	const [previous, next] = $derived(neighbours(entry));
+	const toc = $derived([{ id: 'preview', title: 'Preview' }, ...content]);
 </script>
 
 <svelte:head>
@@ -59,4 +61,8 @@
 			</a>
 		</nav>
 	</article>
+
+	<aside class="hidden xl:block">
+		<div class="sticky top-16"><Toc items={toc} /></div>
+	</aside>
 </div>
