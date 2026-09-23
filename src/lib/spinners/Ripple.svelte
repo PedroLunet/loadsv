@@ -30,9 +30,10 @@
 		animation-play-state: var(--_play-state);
 	}
 
+	/* From nothing, so a new ring appears as a point rather than popping in as a small circle. */
 	@keyframes spread {
 		from {
-			transform: scale(0.15);
+			transform: scale(0);
 			opacity: 1;
 		}
 		to {
