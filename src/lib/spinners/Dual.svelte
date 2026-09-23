@@ -56,7 +56,7 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		svg {
-			animation: none;
+			animation-play-state: paused;
 		}
 	}
 </style>

@@ -49,7 +49,7 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		.ring {
-			animation: none;
+			animation-play-state: paused;
 		}
 	}
 </style>
