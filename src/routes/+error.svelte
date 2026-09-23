@@ -22,7 +22,7 @@
 	</p>
 	<a
 		href={resolve('/')}
-		class="mt-8 rounded-lg bg-neutral-950 px-3.5 py-2 text-sm text-white transition-colors duration-150 hover:bg-neutral-800"
+		class="mt-8 rounded-lg bg-neutral-950 px-3.5 py-2 text-sm text-white transition-[background-color,scale] duration-150 ease-out hover:bg-neutral-800 active:scale-[0.97]"
 	>
 		Browse all spinners
 	</a>
