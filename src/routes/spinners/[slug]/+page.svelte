@@ -1,11 +1,13 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { neighbours } from '$site/catalog';
+	import CopyButton from '$site/components/CopyButton.svelte';
 	import Demo from '$site/components/Demo.svelte';
 	import Playground from '$site/components/Playground.svelte';
 	import Prose from '$site/components/Prose.svelte';
 	import Toc from '$site/components/Toc.svelte';
 	import { sections } from '$site/docs';
+	import { markdownPath, spinnerMarkdown } from '$site/markdown';
 
 	let { data } = $props();
 
@@ -18,6 +20,7 @@
 <svelte:head>
 	<title>{entry.name} — loadsv</title>
 	<meta name="description" content={entry.description} />
+	<link rel="alternate" type="text/markdown" href={markdownPath(entry)} />
 </svelte:head>
 
 <div class="xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(0,36rem)_minmax(0,1fr)] xl:gap-10">
@@ -67,6 +70,9 @@
 	</article>
 
 	<aside class="hidden xl:block">
-		<div class="sticky top-16"><Toc items={toc} /></div>
+		<div class="sticky top-16 flex flex-col gap-3">
+			<CopyButton text={() => spinnerMarkdown(entry)} class="self-start">Copy page</CopyButton>
+			<Toc items={toc} />
+		</div>
 	</aside>
 </div>

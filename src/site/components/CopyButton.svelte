@@ -1,11 +1,20 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import Icon from './Icon.svelte';
 
 	let {
 		text,
 		label = 'Copy to clipboard',
-		class: className = ''
-	}: { text: string | (() => string); label?: string; class?: string } = $props();
+		class: className = '',
+		children
+	}: {
+		text: string | (() => string);
+		/** Accessible name when there's no visible label. */
+		label?: string;
+		class?: string;
+		/** Optional visible label, shown beside the icon. */
+		children?: Snippet;
+	} = $props();
 
 	let copied = $state(false);
 	let timer: ReturnType<typeof setTimeout> | undefined;
@@ -21,11 +30,18 @@
 <button
 	type="button"
 	onclick={copy}
-	aria-label={label}
-	class="grid size-7 shrink-0 place-items-center rounded-md text-neutral-400 transition-[color,background-color,scale] duration-150 ease-out hover:bg-neutral-200/60 hover:text-neutral-900 active:scale-95 {className}"
+	aria-label={children ? undefined : label}
+	class={[
+		'flex shrink-0 items-center rounded-md text-neutral-400 transition-[color,background-color,scale] duration-150 ease-out hover:bg-neutral-200/60 hover:text-neutral-900 active:scale-95',
+		children ? 'h-7 gap-2 px-2 text-[13px] text-neutral-500' : 'size-7 justify-center',
+		className
+	]}
 >
-	<span class="icon" data-shown={!copied}><Icon name="copy" size={14} /></span>
-	<span class="icon" data-shown={copied}><Icon name="check" size={14} /></span>
+	<span class="grid">
+		<span class="icon" data-shown={!copied}><Icon name="copy" size={14} /></span>
+		<span class="icon" data-shown={copied}><Icon name="check" size={14} /></span>
+	</span>
+	{@render children?.()}
 	<span class="sr-only" aria-live="polite">{copied ? 'Copied' : ''}</span>
 </button>
 
