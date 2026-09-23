@@ -149,6 +149,19 @@ test.describe('view dock', () => {
 		expect(errors).toEqual([]);
 	});
 
+	test.describe('before JavaScript runs', () => {
+		test.use({ javaScriptEnabled: false });
+
+		test('already marks and highlights the current view', async ({ page }) => {
+			await page.goto('/browse');
+			const current = page.getByRole('navigation', { name: 'Views' }).getByRole('link', {
+				name: 'Browse'
+			});
+			await expect(current).toHaveAttribute('aria-current', 'page');
+			await expect(current).toHaveCSS('color', 'rgb(255, 255, 255)');
+		});
+	});
+
 	test('stays out of the docs, which have the sidebar', async ({ page }) => {
 		await page.goto('/spinners/arc');
 		await expect(page.getByRole('complementary').first()).toBeVisible();

@@ -9,17 +9,18 @@
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 
+	// Matched by route, not href: prerendered hrefs are relative, so they never equal the URL.
 	const views = [
-		{ href: resolve('/'), label: 'Try it' },
-		{ href: resolve('/browse'), label: 'Browse' },
-		{ href: resolve('/in-an-app'), label: 'In an app' }
-	];
+		{ route: '/(views)', href: resolve('/'), label: 'Try it' },
+		{ route: '/(views)/browse', href: resolve('/browse'), label: 'Browse' },
+		{ route: '/(views)/in-an-app', href: resolve('/in-an-app'), label: 'In an app' }
+	] as const;
 
 	// Both layers share these so their labels line up exactly.
 	const label = 'flex h-8 items-center rounded-full px-3.5 text-[13px] font-medium';
 
 	const links: HTMLAnchorElement[] = $state([]);
-	const current = $derived(views.findIndex((view) => view.href === page.url.pathname));
+	const current = $derived(views.findIndex((view) => view.route === page.route.id));
 
 	let clip = $state<string>();
 	let slide = $state(false);
