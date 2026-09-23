@@ -53,14 +53,14 @@
 
 		<nav aria-label="Other spinners" class="mt-16 grid grid-cols-2 gap-2 text-sm">
 			<a
-				href={resolve('/spinners/[slug]', { slug: previous.slug })}
+				href={resolve(`/spinners/${previous.slug}`)}
 				class="rounded-xl border border-neutral-100 px-4 py-3 transition-[background-color,scale] duration-150 ease-out hover:bg-neutral-50 active:scale-[0.98]"
 			>
 				<span class="block text-xs text-neutral-500">Previous</span>
 				<span class="font-medium">{previous.name}</span>
 			</a>
 			<a
-				href={resolve('/spinners/[slug]', { slug: next.slug })}
+				href={resolve(`/spinners/${next.slug}`)}
 				class="rounded-xl border border-neutral-100 px-4 py-3 text-right transition-[background-color,scale] duration-150 ease-out hover:bg-neutral-50 active:scale-[0.98]"
 			>
 				<span class="block text-xs text-neutral-500">Next</span>

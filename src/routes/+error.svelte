@@ -10,7 +10,7 @@
 	<title>{missing ? 'Not found' : 'Error'} — loadsv</title>
 </svelte:head>
 
-<div class="mx-auto flex max-w-xl flex-col items-start">
+<main id="content" class="mx-auto flex max-w-xl flex-col items-start px-5 pt-24 pb-24 sm:px-0">
 	<!-- A spinner that never gets going: the page it was waiting for doesn't exist. -->
 	<Ring size={28} playState="paused" class="text-neutral-300" />
 	<h1 class="mt-6 text-[28px] leading-[1.1] font-medium tracking-[-0.02em]">
@@ -26,4 +26,4 @@
 	>
 		Browse all spinners
 	</a>
-</div>
+</main>
