@@ -59,6 +59,12 @@ describe.each(spinners)('%s', (_, spinner) => {
 		expect(tag).toMatch(/class="lsv lsv-[a-z-]+ opacity-40/);
 		expect(tag).toContain('data-testid="spinner"');
 	});
+
+	it('keeps a passed style alongside its own', () => {
+		const tag = root(spinner, { style: 'margin-inline: 4px' });
+		expect(tag).toContain('margin-inline: 4px');
+		expect(tag).toContain(`--lsv-size: ${DEFAULT_SIZE}px`);
+	});
 });
 
 describe('options', () => {
