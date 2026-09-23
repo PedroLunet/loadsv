@@ -28,7 +28,8 @@ export const durations = {
 	bounce: 900,
 	'newtons-cradle': 1200,
 	hourglass: 2000,
-	atom: 1200
+	atom: 1200,
+	snake: 1500
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;

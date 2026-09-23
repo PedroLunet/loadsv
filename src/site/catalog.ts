@@ -192,6 +192,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'snake',
+		name: 'Snake',
+		importName: 'Snake',
+		description: 'An arc chasing its own tail, stretching out and shrinking back as it turns.',
+		options: [cap]
+	},
+	{
 		slug: 'swirl',
 		name: 'Swirl',
 		importName: 'Swirl',

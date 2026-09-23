@@ -68,10 +68,13 @@ describe.each(spinners)('%s', (_, spinner) => {
 });
 
 describe('options', () => {
-	it.each([library.Arc, library.Ring, library.Dual])('cap switches the stroke ends', (spinner) => {
-		expect(html(spinner)).toContain('stroke-linecap="round"');
-		expect(html(spinner, { cap: 'flat' })).toContain('stroke-linecap="butt"');
-	});
+	it.each([library.Arc, library.Ring, library.Dual, library.Snake])(
+		'cap switches the stroke ends',
+		(spinner) => {
+			expect(html(spinner)).toContain('stroke-linecap="round"');
+			expect(html(spinner, { cap: 'flat' })).toContain('stroke-linecap="butt"');
+		}
+	);
 
 	it.each([library.Arc, library.Ring])('easing is exposed to the stylesheet', (spinner) => {
 		expect(html(spinner)).toContain('data-easing="linear"');
