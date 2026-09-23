@@ -27,7 +27,8 @@ export const durations = {
 	leap: 1500,
 	bounce: 900,
 	'newtons-cradle': 1200,
-	hourglass: 2000
+	hourglass: 2000,
+	atom: 1200
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;

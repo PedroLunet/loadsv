@@ -1,4 +1,5 @@
 export { default as Arc } from './spinners/Arc.svelte';
+export { default as Atom } from './spinners/Atom.svelte';
 export { default as Blocks } from './spinners/Blocks.svelte';
 export { default as Bounce } from './spinners/Bounce.svelte';
 export { default as BouncingDots } from './spinners/BouncingDots.svelte';

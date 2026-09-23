@@ -52,6 +52,13 @@ export const catalog: readonly Entry[] = [
 		options: [easing, cap]
 	},
 	{
+		slug: 'atom',
+		name: 'Atom',
+		importName: 'Atom',
+		description: 'Three electrons circling a nucleus, each on its own tilted orbit.',
+		options: []
+	},
+	{
 		slug: 'blocks',
 		name: 'Blocks',
 		importName: 'Blocks',
