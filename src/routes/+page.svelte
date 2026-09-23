@@ -16,7 +16,8 @@
 
 <div class="mx-auto max-w-xl">
 	<h1 class="text-[28px] leading-[1.1] font-medium tracking-[-0.02em] text-balance">
-		Loading,<br /><span class="text-neutral-400">made for Svelte.</span>
+		<!-- The space keeps the accessible name from reading "Loading,made"; <br> adds none. -->
+		Loading, <br /><span class="text-neutral-400">made for Svelte.</span>
 	</h1>
 	<p class="mt-4 text-[15px] leading-relaxed text-neutral-600">
 		A lightweight library of beautiful loading indicators for Svelte.
