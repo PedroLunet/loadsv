@@ -136,6 +136,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'swirl',
+		name: 'Swirl',
+		importName: 'Swirl',
+		description: 'A bright cell gliding round the edge of a grid, trailing light.',
+		options: []
+	},
+	{
 		slug: 'wave',
 		name: 'Wave',
 		importName: 'Wave',

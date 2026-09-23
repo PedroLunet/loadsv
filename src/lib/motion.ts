@@ -19,7 +19,8 @@ export const durations = {
 	blocks: 1200,
 	flip: 1600,
 	clock: 1000,
-	'circular-dots': 800
+	'circular-dots': 800,
+	swirl: 1000
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
