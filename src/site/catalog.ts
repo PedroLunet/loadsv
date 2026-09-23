@@ -101,6 +101,13 @@ export const catalog: readonly Entry[] = [
 		options: [cap]
 	},
 	{
+		slug: 'eclipse',
+		name: 'Eclipse',
+		importName: 'Eclipse',
+		description: 'Two dots circling each other, seen edge-on, one passing behind the other.',
+		options: []
+	},
+	{
 		slug: 'flip',
 		name: 'Flip',
 		importName: 'Flip',
