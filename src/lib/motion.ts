@@ -6,7 +6,8 @@ export const DEFAULT_SIZE = 20;
  * The single definition: spinners read their fallback from here, and so does the site.
  */
 export const durations = {
-	arc: 800
+	arc: 800,
+	ring: 800
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
