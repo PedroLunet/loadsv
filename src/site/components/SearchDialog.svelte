@@ -116,7 +116,16 @@
 			oninput={() => (active = 0)}
 			{onkeydown}
 		/>
-		<kbd class="rounded border border-neutral-200 px-1.5 py-0.5 font-sans text-[11px]">Esc</kbd>
+		<!-- Esc for keyboards; touch has no Escape key, so the same control reads "Cancel". -->
+		<button
+			type="button"
+			aria-label="Close search"
+			class="rounded border border-neutral-200 px-1.5 py-0.5 text-[11px] transition-colors hover:text-neutral-600 pointer-coarse:-mr-1.5 pointer-coarse:border-transparent pointer-coarse:px-2 pointer-coarse:py-2 pointer-coarse:text-sm pointer-coarse:text-neutral-600"
+			onclick={() => (search.open = false)}
+		>
+			<span class="pointer-coarse:hidden">Esc</span>
+			<span class="hidden pointer-coarse:inline">Cancel</span>
+		</button>
 	</div>
 
 	<ul id="{id}-list" role="listbox" aria-label="Spinners" class="max-h-80 overflow-y-auto p-1.5">
