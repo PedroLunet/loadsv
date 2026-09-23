@@ -35,14 +35,16 @@
 
 	/*
 	 * Starts hidden under the dot: its outer edge (11.25 × 0.3) is just inside the dot's 3.5,
-	 * so the ring grows out from beneath it. Any larger and the stroke would show around the
-	 * dot the moment each loop restarts, making the dot swell for a frame.
+	 * so the ring grows out from beneath it, easing out as it spreads.
 	 */
 	.lsv-pulse-ring {
 		transform: scale(0.3);
+		opacity: 0;
 		animation:
-			grow var(--_duration) cubic-bezier(0.23, 1, 0.32, 1) infinite,
+			grow var(--_duration) cubic-bezier(0.33, 1, 0.68, 1) infinite,
 			fade var(--_duration) linear infinite;
+		/* Starts partway out, so a still frame shows the ring, not just the dot. */
+		animation-delay: calc(var(--_duration) * -0.3);
 		animation-play-state: var(--_play-state);
 	}
 
@@ -52,8 +54,19 @@
 		}
 	}
 
+	/*
+	 * Invisible until it's clear of the dot, then fades in, and out again as it spreads.
+	 * A ring seen while still touching the dot reads as the dot itself swelling.
+	 */
 	@keyframes fade {
-		to {
+		0%,
+		4% {
+			opacity: 0;
+		}
+		16% {
+			opacity: 1;
+		}
+		100% {
 			opacity: 0;
 		}
 	}
