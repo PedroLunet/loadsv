@@ -13,7 +13,8 @@ export const durations = {
 	classic: 1000,
 	'bouncing-dots': 1000,
 	'linear-dots': 1000,
-	wave: 1000
+	wave: 1000,
+	pulse: 1200
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
