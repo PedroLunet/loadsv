@@ -8,7 +8,8 @@ export const DEFAULT_SIZE = 20;
 export const durations = {
 	arc: 800,
 	ring: 800,
-	dual: 1000
+	dual: 1000,
+	comet: 800
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
