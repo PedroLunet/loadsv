@@ -10,7 +10,8 @@
 		play: 'M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5',
 		pause: 'M8 4v16m8-16v16',
 		reset: 'M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5',
-		chevron: 'm9 18 6-6-6-6'
+		chevron: 'm9 18 6-6-6-6',
+		plus: 'M12 5v14M5 12h14'
 	};
 
 	/** Brand marks are filled; everything else is a 2px stroke. */

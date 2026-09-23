@@ -126,39 +126,94 @@ test.describe('in an app', () => {
 });
 
 test.describe('view dock', () => {
-	test('switches views and marks the one you are on', async ({ page }) => {
+	/** The dock, its toggle, and the menu the toggle opens (inert while closed). */
+	async function dockOf(page: Page) {
+		const dock = page.getByRole('navigation', { name: 'Views' });
+		const toggle = dock.getByRole('button', { name: /^Views/ });
+		const menu = page.locator(`#${await toggle.getAttribute('aria-controls')}`);
+		return { dock, toggle, menu };
+	}
+
+	test('opens onto the views, switches between them and marks the one you are on', async ({
+		page
+	}) => {
 		const errors = watchConsole(page);
 		await page.goto('/');
 		await hydrated(page);
-		const dock = page.getByRole('navigation', { name: 'Views' });
-		await expect(dock.getByRole('link', { name: 'Try it' })).toHaveAttribute(
-			'aria-current',
-			'page'
-		);
+		const { dock, toggle, menu } = await dockOf(page);
+		await expect(toggle).toHaveAccessibleName('Views, now Try it');
+		await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+		await expect(menu).toHaveJSProperty('inert', true);
 
 		for (const [name, path] of [
 			['Browse', '/browse'],
 			['In an app', '/in-an-app'],
 			['Try it', '/']
 		]) {
+			await toggle.click();
+			await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+			await expect(menu).toHaveJSProperty('inert', false);
 			await dock.getByRole('link', { name }).click();
 			await expect(page).toHaveURL(path);
+			await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+			await expect(toggle).toHaveAccessibleName(`Views, now ${name}`);
 			await expect(dock.getByRole('link', { name })).toHaveAttribute('aria-current', 'page');
 			await expect(dock.locator('[aria-current]')).toHaveCount(1);
 		}
 		expect(errors).toEqual([]);
 	});
 
+	test('closes on Escape, handing focus back, and on a click outside', async ({ page }) => {
+		await page.goto('/browse');
+		await hydrated(page);
+		const { dock, toggle } = await dockOf(page);
+
+		await toggle.click();
+		await page.keyboard.press('Tab');
+		await expect(dock.getByRole('link', { name: 'Try it' })).toBeFocused();
+		await page.keyboard.press('Escape');
+		await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+		await expect(toggle).toBeFocused();
+
+		await toggle.click();
+		await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+		await page.mouse.click(8, 8);
+		await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+	});
+
+	test('leaves the page above it clickable while closed', async ({ page }) => {
+		await page.goto('/browse');
+		await hydrated(page);
+		const bar = (await page.getByRole('navigation', { name: 'Views' }).boundingBox())!;
+		const covered = await page.evaluate(
+			([x, y]) => !!document.elementFromPoint(x, y)?.closest('nav'),
+			[bar.x + bar.width / 2, bar.y - 60]
+		);
+		expect(covered).toBe(false);
+	});
+
 	test.describe('before JavaScript runs', () => {
 		test.use({ javaScriptEnabled: false });
 
-		test('already marks and highlights the current view', async ({ page }) => {
+		test('marks the current view and opens on hover', async ({ page }) => {
 			await page.goto('/browse');
-			const current = page.getByRole('navigation', { name: 'Views' }).getByRole('link', {
-				name: 'Browse'
-			});
-			await expect(current).toHaveAttribute('aria-current', 'page');
-			await expect(current).toHaveCSS('color', 'rgb(255, 255, 255)');
+			const { dock, toggle, menu } = await dockOf(page);
+			await expect(toggle).toHaveAccessibleName('Views, now Browse');
+			await expect(toggle).not.toHaveAttribute('aria-expanded');
+			await expect(dock.getByRole('link', { name: 'Browse' })).toHaveAttribute(
+				'aria-current',
+				'page'
+			);
+
+			// The menu is clipped away until hovering reveals it; once it has, a card takes the click.
+			await dock.hover();
+			await expect(menu.locator('..')).toHaveCSS('clip-path', 'inset(0px round 20px)');
+			await dock.getByRole('link', { name: 'In an app' }).click();
+			await expect(page).toHaveURL('/in-an-app');
+			await expect(dock.getByRole('link', { name: 'In an app' })).toHaveAttribute(
+				'aria-current',
+				'page'
+			);
 		});
 	});
 
