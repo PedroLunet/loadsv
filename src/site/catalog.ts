@@ -226,6 +226,11 @@ export function find(slug: string): Entry | undefined {
 	return catalog.find((entry) => entry.slug === slug);
 }
 
+/** The entry for a name the type system already knows is a spinner. */
+export function entryOf(slug: SpinnerName): Entry {
+	return find(slug)!;
+}
+
 /** Previous and next entries, wrapping around. */
 export function neighbours(entry: Entry): [Entry, Entry] {
 	const i = catalog.indexOf(entry);

@@ -6,7 +6,7 @@
 	import type { Snippet } from 'svelte';
 	import { resolve } from '$app/paths';
 	import type { SpinnerName } from '$lib/motion.js';
-	import { find } from '$site/catalog';
+	import { entryOf } from '$site/catalog';
 
 	let {
 		slug,
@@ -21,7 +21,7 @@
 		4: 'sm:col-span-2 lg:col-span-4'
 	};
 
-	const name = $derived(find(slug)!.name);
+	const name = $derived(entryOf(slug).name);
 </script>
 
 <li class={spans[span]}>

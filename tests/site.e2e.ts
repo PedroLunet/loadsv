@@ -18,11 +18,11 @@ function watchConsole(page: Page) {
 }
 
 /**
- * Pages are prerendered, so they're visible before they're interactive. The sidebar's
+ * Pages are prerendered, so they're visible before they're interactive. The search button's
  * shortcut hint renders on mount, which makes it a reliable signal that hydration is done.
  */
 async function hydrated(page: Page) {
-	await expect(page.locator('aside kbd')).toBeAttached();
+	await expect(page.locator('kbd', { hasText: 'K' }).first()).toBeAttached();
 }
 
 /** How every spinner in the main content is animating: the root's own animation and its children's play states. */
@@ -38,29 +38,48 @@ function motion(page: Page) {
 	);
 }
 
-test.describe('overview', () => {
-	test('lists every spinner, linking to its page', async ({ page, request }) => {
+test.describe('home', () => {
+	test('indexes every spinner, linking to its page', async ({ page, request }) => {
 		const errors = watchConsole(page);
 		const spinners = await published(request);
 		await page.goto('/');
 
-		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Loading, made for Svelte.');
-		const cards = page.getByRole('main').getByRole('link');
-		await expect(cards).toHaveText(spinners.map((s) => s.name));
+		await expect(page.getByRole('heading', { level: 1 })).toHaveText('loadsv');
+		const index = page.locator('#spinners').getByRole('link');
+		await expect(index).toContainText(spinners.map((s) => s.name));
 
-		await cards.filter({ hasText: 'Bouncing dots' }).click();
+		await index.filter({ hasText: 'Bouncing dots' }).click();
 		await expect(page).toHaveURL('/spinners/bouncing-dots');
 		await expect(page.getByRole('heading', { level: 1 })).toContainText('Bouncing dots');
 		expect(errors).toEqual([]);
 	});
 
-	test('spinners are hidden from assistive technology', async ({ page, request }) => {
-		const count = (await published(request)).length;
+	test('picking a spinner runs the demo with it and rewrites the code', async ({ page }) => {
+		const errors = watchConsole(page);
 		await page.goto('/');
-		const spinners = page.locator('main .lsv');
-		await expect(spinners).toHaveCount(count);
-		for (const spinner of await spinners.all()) {
-			await expect(spinner).toHaveAttribute('aria-hidden', 'true');
+		await hydrated(page);
+		const section = page.locator('section', {
+			has: page.getByRole('heading', { name: 'In a button' })
+		});
+		const ring = section
+			.getByRole('group', { name: 'Spinner in the button' })
+			.getByRole('button', { name: 'Ring', exact: true });
+
+		await ring.click();
+		await expect(ring).toHaveAttribute('aria-pressed', 'true');
+		await expect(section.getByRole('button', { name: 'Saving…' })).toBeVisible();
+		await expect(section.locator('pre')).toContainText('{#if saving}<Ring size={14} />{/if}');
+		expect(errors).toEqual([]);
+	});
+
+	test('spinners are hidden from assistive technology', async ({ page }) => {
+		for (const path of ['/', '/browse']) {
+			await page.goto(path);
+			const spinners = await page.locator('main .lsv').all();
+			expect(spinners.length, path).toBeGreaterThan(0);
+			for (const spinner of spinners) {
+				await expect(spinner).toHaveAttribute('aria-hidden', 'true');
+			}
 		}
 	});
 });
@@ -142,7 +161,7 @@ test.describe('spinner page', () => {
 	test('links to its neighbours in catalog order, wrapping around', async ({ page }) => {
 		await page.goto('/');
 		const hrefs = await page
-			.getByRole('main')
+			.locator('#spinners')
 			.getByRole('link')
 			.evaluateAll((links) => links.map((link) => link.getAttribute('href')));
 
@@ -241,12 +260,14 @@ test.describe('on a phone', () => {
 	});
 
 	test('keeps the links and credit the sidebar has on desktop', async ({ page }) => {
-		await page.goto('/');
-		await expect(page.getByRole('complementary')).toBeHidden();
+		for (const path of ['/', '/spinners/arc']) {
+			await page.goto(path);
+			await expect(page.getByRole('complementary')).toBeHidden();
 
-		const footer = page.getByRole('contentinfo');
-		await expect(footer.getByRole('link', { name: 'GitHub' })).toBeVisible();
-		await expect(footer.getByRole('link', { name: 'loading.dev' })).toBeVisible();
+			const footer = page.getByRole('contentinfo');
+			await expect(footer.getByRole('link', { name: 'GitHub' })).toBeVisible();
+			await expect(footer.getByRole('link', { name: 'loading.dev' })).toBeVisible();
+		}
 	});
 
 	test('the customizer stage keeps its height', async ({ page }) => {
@@ -257,8 +278,9 @@ test.describe('on a phone', () => {
 });
 
 test.describe('motion', () => {
+	// Browse plays every spinner at once; the home page keeps unchosen ones still on purpose.
 	test('spinners animate their children, not their root', async ({ page }) => {
-		await page.goto('/');
+		await page.goto('/browse');
 		for (const spinner of await motion(page)) {
 			expect(spinner.root).toBe('none');
 			expect(spinner.children.length).toBeGreaterThan(0);
@@ -270,7 +292,7 @@ test.describe('motion', () => {
 		test.use({ reducedMotion: 'reduce' });
 
 		test('spinners hold still and breathe instead', async ({ page }) => {
-			await page.goto('/');
+			await page.goto('/browse');
 			for (const spinner of await motion(page)) {
 				expect(spinner.root).toMatch(/breathe/);
 				expect(spinner.children.length).toBeGreaterThan(0);
