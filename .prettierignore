@@ -10,3 +10,8 @@ bun.lockb
 
 # Generated
 worker-configuration.d.ts
+
+# Vendored agent skills
+.agents/
+.pi/
+skills-lock.json
