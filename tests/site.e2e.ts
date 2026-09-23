@@ -65,6 +65,22 @@ test.describe('overview', () => {
 	});
 });
 
+test.describe('browse', () => {
+	test('shows every spinner once, in context, linking to its page', async ({ page, request }) => {
+		const errors = watchConsole(page);
+		const spinners = await published(request);
+		await page.goto('/browse');
+
+		const links = page.getByRole('main').getByRole('listitem').getByRole('link');
+		const hrefs = await links.evaluateAll((all) => all.map((link) => link.getAttribute('href')));
+		expect(hrefs.sort()).toEqual(spinners.map((s) => s.markdown.replace(/\.md$/, '')).sort());
+
+		await links.filter({ hasText: 'Hourglass' }).click();
+		await expect(page).toHaveURL('/spinners/hourglass');
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('spinner page', () => {
 	test('customizer rewrites the snippet and resets it', async ({ page }) => {
 		const errors = watchConsole(page);
@@ -304,5 +320,5 @@ test('unknown pages get a 404 with a way back', async ({ page }) => {
 	await expect(page.getByRole('heading', { level: 1 })).toContainText('Nothing to load here.');
 
 	await page.getByRole('link', { name: 'Browse all spinners' }).click();
-	await expect(page).toHaveURL('/');
+	await expect(page).toHaveURL('/browse');
 });
