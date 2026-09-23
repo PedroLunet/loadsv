@@ -59,6 +59,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'bounce',
+		name: 'Bounce',
+		importName: 'Bounce',
+		description: 'A ball bouncing on the spot, squashing as it lands.',
+		options: []
+	},
+	{
 		slug: 'bouncing-dots',
 		name: 'Bouncing dots',
 		importName: 'BouncingDots',
