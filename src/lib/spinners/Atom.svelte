@@ -41,7 +41,9 @@
 	.lsv-atom-ring {
 		border-width: calc(var(--lsv-size) * 1.25 / 24);
 		rotate: calc(var(--k) * 60deg);
-		animation: tumble var(--_duration) linear infinite;
+		animation:
+			tumble var(--_duration) linear infinite,
+			edge var(--_duration) linear infinite;
 		animation-delay: calc(var(--_duration) * var(--k) / -3);
 		animation-play-state: var(--_play-state);
 	}
@@ -52,6 +54,28 @@
 		}
 		to {
 			transform: rotateY(1turn);
+		}
+	}
+
+	/*
+	 * Turned nearly edge-on, a ring's sides thin to a fraction of a pixel and break up into
+	 * dotted hairlines. So it fades out as it narrows, stays hidden while it's under a fifth
+	 * of its width (a quarter and three quarters of the way round), and fades back in.
+	 */
+	@keyframes edge {
+		0%,
+		15%,
+		35%,
+		65%,
+		85%,
+		100% {
+			opacity: 1;
+		}
+		22%,
+		28%,
+		72%,
+		78% {
+			opacity: 0;
 		}
 	}
 
