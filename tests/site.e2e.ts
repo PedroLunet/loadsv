@@ -186,6 +186,10 @@ test.describe('search', () => {
 		await input.fill('ring');
 		await expect(dialog.getByRole('option').first()).toContainText('Ring');
 
+		// Straight and curly apostrophes match each other.
+		await input.fill("newton's");
+		await expect(dialog.getByRole('option').first()).toContainText('Newton’s cradle');
+
 		await input.fill('zzz');
 		await expect(dialog.getByRole('option')).toHaveCount(0);
 		await expect(dialog).toContainText('No spinners match “zzz”.');

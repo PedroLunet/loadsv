@@ -19,14 +19,16 @@
 	const results = $derived(filter(query));
 	const optionId = (entry: Entry) => `${id}-${entry.slug}`;
 
+	/** Lowercase, with typographic apostrophes straightened: people type "newton's", not "newton’s". */
+	const normalize = (text: string) => text.toLowerCase().replace(/[‘’]/g, "'");
+
 	function rank(entry: Entry, needle: string) {
-		const name = entry.name.toLowerCase();
+		const name = normalize(entry.name);
 		if (name.startsWith(needle)) return 3;
 		if (name.includes(needle)) return 2;
 		// Descriptions match on word starts only, or short queries would hit half the catalog.
 		if (
-			entry.description
-				.toLowerCase()
+			normalize(entry.description)
 				.split(/\W+/)
 				.some((w) => w.startsWith(needle))
 		)
@@ -35,7 +37,7 @@
 	}
 
 	function filter(value: string) {
-		const needle = value.trim().toLowerCase();
+		const needle = normalize(value.trim());
 		if (!needle) return catalog;
 		return catalog
 			.map((entry) => ({ entry, rank: rank(entry, needle) }))
