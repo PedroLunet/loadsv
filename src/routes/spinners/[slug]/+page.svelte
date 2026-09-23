@@ -2,9 +2,10 @@
 	import { resolve } from '$app/paths';
 	import { neighbours } from '$site/catalog';
 	import Demo from '$site/components/Demo.svelte';
+	import Playground from '$site/components/Playground.svelte';
 	import Prose from '$site/components/Prose.svelte';
 	import Toc from '$site/components/Toc.svelte';
-	import { PREVIEW_SIZE, sections } from '$site/docs';
+	import { sections } from '$site/docs';
 
 	let { data } = $props();
 
@@ -29,7 +30,10 @@
 		</header>
 
 		<section id="preview" class="mt-8 scroll-mt-20" aria-label="Preview">
-			<Demo {entry} elements={[{ size: PREVIEW_SIZE }]} />
+			<!-- Keyed so every spinner starts from its own defaults. -->
+			{#key entry.slug}
+				<Playground {entry} />
+			{/key}
 		</section>
 
 		{#each content as section (section.id)}
