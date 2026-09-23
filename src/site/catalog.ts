@@ -143,6 +143,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'newtons-cradle',
+		name: 'Newton’s cradle',
+		importName: 'NewtonsCradle',
+		description: 'Five hanging balls, the outer two swinging in turn.',
+		options: []
+	},
+	{
 		slug: 'pulse',
 		name: 'Pulse',
 		importName: 'Pulse',
