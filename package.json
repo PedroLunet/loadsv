@@ -49,7 +49,7 @@
 		"format": "prettier --write .",
 		"gen": "wrangler types",
 		"test:unit": "vitest",
-		"test:e2e": "playwright install && playwright test",
+		"test:e2e": "playwright install chromium && playwright test",
 		"test": "vitest run && npm run test:e2e"
 	},
 	"devDependencies": {
