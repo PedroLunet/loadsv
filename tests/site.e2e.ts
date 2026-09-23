@@ -312,7 +312,7 @@ test.describe('search', () => {
 		await page.goto('/');
 		await hydrated(page);
 		const dialog = page.getByRole('dialog', { name: 'Search spinners' });
-		const input = dialog.getByRole('combobox');
+		const input = dialog.getByRole('combobox', { name: 'Search spinners' });
 
 		await page.keyboard.press('ControlOrMeta+k');
 		await expect(dialog).toBeVisible();

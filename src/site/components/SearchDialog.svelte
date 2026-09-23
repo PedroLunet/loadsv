@@ -104,8 +104,10 @@
 	<div class="flex items-center gap-2.5 border-b border-neutral-100 px-4 text-neutral-400">
 		<Icon name="search" size={16} />
 		<input
+			id="{id}-input"
 			type="text"
 			role="combobox"
+			aria-label="Search spinners"
 			aria-expanded="true"
 			aria-controls="{id}-list"
 			aria-autocomplete="list"
