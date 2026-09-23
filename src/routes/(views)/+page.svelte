@@ -384,11 +384,19 @@ ${scriptEnd}
 							</span>
 						</span>
 						<span class="swap min-w-0 flex-1 text-[13px]">
-							<span class="layer start flex-col" data-shown={toast === 'loading'}>
+							<span
+								class="layer start flex-col"
+								data-shown={toast === 'loading'}
+								aria-hidden={toast !== 'loading'}
+							>
 								<span class="font-medium text-neutral-900">Deploying loadsv-docs</span>
 								<span class="text-neutral-500">Building in 3 regions</span>
 							</span>
-							<span class="layer start flex-col" data-shown={toast === 'done'}>
+							<span
+								class="layer start flex-col"
+								data-shown={toast === 'done'}
+								aria-hidden={toast !== 'done'}
+							>
 								<span class="font-medium text-neutral-900">Deployed</span>
 								<span class="text-neutral-500">Ready in 14s</span>
 							</span>
@@ -493,7 +501,11 @@ ${scriptEnd}
 						<PanelSpinner size={28} playState={panelLoading ? 'running' : 'paused'} />
 						<span class="text-[13px]">Fetching invoices…</span>
 					</div>
-					<ul class="layer flex-col items-stretch! justify-start!" data-shown={!panelLoading}>
+					<ul
+						class="layer flex-col items-stretch! justify-start!"
+						data-shown={!panelLoading}
+						aria-hidden={panelLoading}
+					>
 						{#each invoices as invoice (invoice.id)}
 							<li
 								class="flex h-[53px] items-center gap-3 border-b border-neutral-100 px-4 text-[13px] last:border-0"
