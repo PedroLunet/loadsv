@@ -1,11 +1,62 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
+	import { neighbours } from '$site/catalog';
+	import Demo from '$site/components/Demo.svelte';
+	import Prose from '$site/components/Prose.svelte';
+	import { PREVIEW_SIZE, sections } from '$site/docs';
+
 	let { data } = $props();
+
+	const entry = $derived(data.entry);
+	const content = $derived(sections(entry));
+	const [previous, next] = $derived(neighbours(entry));
 </script>
 
 <svelte:head>
-	<title>{data.entry.name} — loadsv</title>
+	<title>{entry.name} — loadsv</title>
+	<meta name="description" content={entry.description} />
 </svelte:head>
 
-<div class="mx-auto max-w-xl">
-	<h1 class="text-[28px] leading-[1.1] font-medium tracking-[-0.02em]">{data.entry.name}</h1>
+<div class="xl:grid xl:grid-cols-[minmax(0,1fr)_minmax(0,36rem)_minmax(0,1fr)] xl:gap-10">
+	<article class="mx-auto max-w-xl xl:col-start-2 xl:w-full">
+		<header>
+			<h1 class="text-[28px] leading-[1.1] font-medium tracking-[-0.02em]">
+				<span class="text-neutral-400">Component/</span><br />{entry.name}
+			</h1>
+			<p class="mt-4 text-[15px] leading-relaxed text-neutral-600">{entry.description}</p>
+		</header>
+
+		<section id="preview" class="mt-8 scroll-mt-20" aria-label="Preview">
+			<Demo {entry} elements={[{ size: PREVIEW_SIZE }]} />
+		</section>
+
+		{#each content as section (section.id)}
+			<section id={section.id} class="mt-14 scroll-mt-20">
+				<h2 class="text-[17px] font-medium tracking-[-0.01em]">{section.title}</h2>
+				<p class="mt-2 text-sm leading-relaxed text-pretty text-neutral-600">
+					<Prose text={section.body} />
+				</p>
+				{#if section.demo}
+					<div class="mt-5"><Demo {entry} elements={section.demo} /></div>
+				{/if}
+			</section>
+		{/each}
+
+		<nav aria-label="Other spinners" class="mt-16 grid grid-cols-2 gap-2 text-sm">
+			<a
+				href={resolve('/spinners/[slug]', { slug: previous.slug })}
+				class="rounded-xl border border-neutral-100 px-4 py-3 transition-colors duration-150 hover:bg-neutral-50"
+			>
+				<span class="block text-xs text-neutral-500">Previous</span>
+				<span class="font-medium">{previous.name}</span>
+			</a>
+			<a
+				href={resolve('/spinners/[slug]', { slug: next.slug })}
+				class="rounded-xl border border-neutral-100 px-4 py-3 text-right transition-colors duration-150 hover:bg-neutral-50"
+			>
+				<span class="block text-xs text-neutral-500">Next</span>
+				<span class="font-medium">{next.name}</span>
+			</a>
+		</nav>
+	</article>
 </div>
