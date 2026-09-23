@@ -12,7 +12,9 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter()
+			adapter: adapter(),
+			// Docs-site code lives outside $lib so it never ships in the package.
+			alias: { $site: 'src/site' }
 		})
 	],
 	test: {
