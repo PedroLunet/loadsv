@@ -6,6 +6,7 @@ export { default as Dual } from './spinners/Dual.svelte';
 export { default as LinearDots } from './spinners/LinearDots.svelte';
 export { default as Pulse } from './spinners/Pulse.svelte';
 export { default as Ring } from './spinners/Ring.svelte';
+export { default as Ripple } from './spinners/Ripple.svelte';
 export { default as Wave } from './spinners/Wave.svelte';
 
 export type { Cap, Easing, PlayState, SpinnerProps } from './types.js';
