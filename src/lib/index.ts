@@ -13,6 +13,7 @@ export { default as LinearDots } from './spinners/LinearDots.svelte';
 export { default as Pulse } from './spinners/Pulse.svelte';
 export { default as Ring } from './spinners/Ring.svelte';
 export { default as Ripple } from './spinners/Ripple.svelte';
+export { default as Slide } from './spinners/Slide.svelte';
 export { default as Swirl } from './spinners/Swirl.svelte';
 export { default as Wave } from './spinners/Wave.svelte';
 
