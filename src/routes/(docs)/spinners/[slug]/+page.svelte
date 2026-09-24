@@ -69,7 +69,8 @@
 		</nav>
 	</article>
 
-	<aside class="hidden xl:block">
+	<!-- Capped, so on a wide screen the contents stay beside the page instead of spanning the gutter. -->
+	<aside class="hidden max-w-56 xl:block">
 		<div class="sticky top-16 flex flex-col gap-3">
 			<CopyButton text={() => spinnerMarkdown(entry)} class="self-start">Copy page</CopyButton>
 			<Toc items={toc} />
