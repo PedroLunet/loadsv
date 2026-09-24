@@ -31,22 +31,17 @@
 	const card =
 		'rounded-xl border border-neutral-200/80 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04)]';
 
-	/* Hero: the first button on the page is already a demo. Each press borrows the next spinner. */
-	const heroSpinners: SpinnerName[] = ['arc', 'snake', 'dual', 'ring', 'comet', 'classic'];
+	/* Hero: the first button on the page is already a demo, loading with the mark. */
 	const heroT = timeline();
-	let heroIndex = $state(0);
 	let hero = $state<Step>('idle');
-	const HeroSpinner = $derived(spinnerOf(heroSpinners[heroIndex]));
+	const HeroSpinner = spinnerOf('spark');
 
 	function loadSomething() {
 		if (hero !== 'idle') return;
 		hero = 'loading';
 		heroT.after(1600, () => {
 			hero = 'done';
-			heroT.after(1200, () => {
-				hero = 'idle';
-				heroIndex = (heroIndex + 1) % heroSpinners.length;
-			});
+			heroT.after(1200, () => (hero = 'idle'));
 		});
 	}
 
@@ -282,7 +277,17 @@ ${scriptEnd}
 		<div class="mt-3">
 			<Chips
 				label="Spinner in the button"
-				options={['arc', 'ring', 'dual', 'snake', 'comet', 'classic', 'clock', 'circular-dots']}
+				options={[
+					'arc',
+					'ring',
+					'dual',
+					'snake',
+					'comet',
+					'classic',
+					'clock',
+					'circular-dots',
+					'handoff'
+				]}
 				bind:value={buttonSpinner}
 				onchange={save}
 			/>
@@ -465,7 +470,7 @@ ${scriptEnd}
 		<div class="mt-3">
 			<Chips
 				label="Typing indicator"
-				options={['bouncing-dots', 'linear-dots', 'wave', 'leap', 'pulse']}
+				options={['bouncing-dots', 'linear-dots', 'wave', 'leap', 'pulse', 'spark', 'ribbon']}
 				bind:value={chatSpinner}
 				onchange={() => ask()}
 			/>
@@ -530,7 +535,16 @@ ${scriptEnd}
 		<div class="mt-3">
 			<Chips
 				label="Spinner in the panel"
-				options={['blocks', 'swirl', 'newtons-cradle', 'slide', 'flip', 'bounce', 'ripple']}
+				options={[
+					'blocks',
+					'swirl',
+					'newtons-cradle',
+					'slide',
+					'flip',
+					'bounce',
+					'ripple',
+					'inchworm'
+				]}
 				bind:value={panelSpinner}
 				onchange={refresh}
 			/>
