@@ -134,11 +134,12 @@
 	}
 
 	/*
-	 * One step, computed rather than hand-written. Planted at the top's middle, the head reaches
-	 * round the corner to the side's middle (6–50%), the briefest hold, then the tail follows
-	 * (54–100%), both on cubic-bezier(0.65, 0, 0.35, 1). Pill k sits k/11 of the way from tail to
-	 * head, and thins to 0.7 at full stretch. Its easing is split, de Casteljau style, wherever it
-	 * crosses from straight to curve, so each segment interpolates along one piece of track.
+	 * One step, computed by scripts/inchworm.mjs rather than written by hand. Planted at the
+	 * top's middle, the head reaches round the corner to the side's middle (6–50%), the
+	 * briefest hold, then the tail follows (54–100%), both on cubic-bezier(0.65, 0, 0.35, 1).
+	 * Pill k sits k/11 of the way from tail to head, and thins to 0.7 at full stretch. Its
+	 * easing is split, de Casteljau style, wherever it crosses from straight to curve, so each
+	 * segment interpolates along one piece of track.
 	 */
 	@keyframes b0 {
 		0%,
