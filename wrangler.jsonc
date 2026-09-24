@@ -8,6 +8,7 @@
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
+	"routes": [{ "pattern": "loadsv.pedrolu.net", "custom_domain": true }],
 	"workers_dev": true,
 	"preview_urls": true
 }
