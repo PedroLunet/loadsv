@@ -51,7 +51,7 @@ Every spinner accepts \`size\`, \`color\`, \`duration\` and \`playState\`, and f
 
 \`--lsv-duration\` and \`--lsv-play-state\` set on any ancestor drive every spinner inside it; props win over the cascade.
 
-Spinners are decorative and \`aria-hidden\`, respect reduced motion out of the box, and require Svelte 5.
+Spinners are decorative and \`aria-hidden\`, respect reduced motion out of the box, and require Svelte 5.16 or later.
 
 ## Spinners
 
