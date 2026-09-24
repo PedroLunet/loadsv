@@ -1,6 +1,6 @@
 {
 	"name": "loadsv",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "A lightweight library of beautiful loading indicators for Svelte. Pure CSS, no dependencies.",
 	"license": "MIT",
 	"homepage": "https://loadsv.pedrolu.net",
