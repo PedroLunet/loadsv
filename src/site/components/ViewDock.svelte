@@ -13,7 +13,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { Arc, BouncingDots, Classic, Snake } from '$lib';
+	import { Arc, BouncingDots, Snake, Spark } from '$lib';
 	import { catalog } from '$site/catalog';
 	import { GITHUB_URL, NPM_URL } from '$site/links';
 	import Icon from './Icon.svelte';
@@ -116,8 +116,8 @@
 					class="group flex h-12 w-full shrink-0 items-center justify-between rounded-[14px] pr-1.5 pl-4 focus-visible:-outline-offset-2"
 				>
 					<span class="flex items-center gap-2">
-						<!-- The mark is the library's Classic spinner, set going when you reach for it. -->
-						<span class="mark flex"><Classic size={16} color="var(--color-svelte)" /></span>
+						<!-- The mark is the library's Spark spinner, always running, like the logo. -->
+						<span class="mark flex"><Spark size={16} color="var(--color-svelte)" /></span>
 						<span
 							class="relative block h-5 overflow-hidden text-[14px] font-semibold tracking-tight"
 						>
@@ -259,18 +259,9 @@
 		rotate: 45deg;
 	}
 
+	/* The panel pauses the spinners in its cards while closed; the mark runs regardless. */
 	.mark {
-		--lsv-play-state: paused;
-	}
-
-	.panel.open .mark {
 		--lsv-play-state: running;
-	}
-
-	@media (hover: hover) {
-		.group:hover .mark {
-			--lsv-play-state: running;
-		}
 	}
 
 	/* Both icons share one cell; the blur blends the swap into a single change. */
