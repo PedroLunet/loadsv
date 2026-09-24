@@ -27,7 +27,7 @@ export const durations = {
 	leap: 1500,
 	bounce: 900,
 	'newtons-cradle': 1200,
-	hourglass: 2000,
+	hourglass: 4000,
 	atom: 1200,
 	snake: 1500
 } satisfies Record<string, number>;

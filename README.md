@@ -51,7 +51,7 @@ Spinners paint with `currentColor`, so they pick up the text color around them:
 | `Dual`          | 1000ms           | `cap`           |
 | `Eclipse`       | 1400ms           |                 |
 | `Flip`          | 1600ms           |                 |
-| `Hourglass`     | 2000ms           |                 |
+| `Hourglass`     | 4000ms           |                 |
 | `InfinityLoop`  | 1600ms           |                 |
 | `Leap`          | 1500ms           |                 |
 | `LinearDots`    | 1000ms           |                 |
