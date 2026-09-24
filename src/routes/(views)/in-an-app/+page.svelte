@@ -36,6 +36,7 @@
 	import { resolve } from '$app/paths';
 	import CopyButton from '$site/components/CopyButton.svelte';
 	import Icon from '$site/components/Icon.svelte';
+	import Meta from '$site/components/Meta.svelte';
 	import Tile from '$site/components/SceneTile.svelte';
 
 	const btn = 'inline-flex h-8 items-center gap-2 rounded-lg px-3 text-[13px] font-medium';
@@ -55,13 +56,10 @@
 	];
 </script>
 
-<svelte:head>
-	<title>In an app — loadsv</title>
-	<meta
-		name="description"
-		content="All 28 loadsv spinners, each shown in the piece of UI it suits best."
-	/>
-</svelte:head>
+<Meta
+	title="In an app — loadsv"
+	description="All 28 loadsv spinners, each shown in the piece of UI it suits best."
+/>
 
 <div class="mx-auto max-w-[70rem] px-6">
 	<section class="pt-14 pb-14 sm:pt-20">

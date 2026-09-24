@@ -5,15 +5,13 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { catalog, componentOf, entryOf } from '$site/catalog';
+	import Meta from '$site/components/Meta.svelte';
 
 	// Spark is the library's own mark, so it leads; the rest follow in catalog order.
 	const entries = [entryOf('spark'), ...catalog.filter((entry) => entry.slug !== 'spark')];
 </script>
 
-<svelte:head>
-	<title>Browse — loadsv</title>
-	<meta name="description" content="All {catalog.length} loadsv spinners, side by side." />
-</svelte:head>
+<Meta title="Browse — loadsv" description="All {catalog.length} loadsv spinners, side by side." />
 
 <div class="mx-auto max-w-[70rem] px-6">
 	<section class="pt-14 pb-14 sm:pt-20">

@@ -1,4 +1,5 @@
 import { expect, test, type APIRequestContext, type Page } from '@playwright/test';
+import { SITE_URL } from '../src/site/links';
 
 /** Every spinner the site publishes, in order, read from llms.txt so tests never hardcode the catalog. */
 async function published(request: APIRequestContext) {
@@ -451,6 +452,37 @@ test.describe('for language models', () => {
 		expect(text).toMatch(/^# Comet\n/);
 		expect(text).toContain("import { Comet } from 'loadsv';");
 		expect(text).toContain('## Accessibility');
+	});
+});
+
+test.describe('link previews', () => {
+	test('every page describes itself once, at its canonical URL', async ({ page }) => {
+		for (const path of ['/', '/browse', '/in-an-app', '/spinners/spark']) {
+			await page.goto(path);
+			const tag = (selector: string) => page.locator(`head ${selector}`);
+			const content = (selector: string) => tag(selector).getAttribute('content');
+			for (const selector of ['title', 'link[rel="canonical"]', 'meta[property="og:title"]']) {
+				await expect(tag(selector), `${path} ${selector}`).toHaveCount(1);
+			}
+
+			expect(await content('meta[property="og:title"]'), path).toBe(await page.title());
+			expect(await content('meta[property="og:description"]'), path).toBe(
+				await content('meta[name="description"]')
+			);
+			const canonical = await tag('link[rel="canonical"]').getAttribute('href');
+			expect(canonical, path).toBe(new URL(path, SITE_URL).href);
+			expect(await content('meta[property="og:url"]'), path).toBe(canonical);
+			expect(await content('meta[property="og:image"]'), path).toBe(`${SITE_URL}/og.png`);
+			expect(await content('meta[name="twitter:card"]'), path).toBe('summary_large_image');
+		}
+	});
+
+	test('serves the preview card', async ({ request }) => {
+		for (const [path, type] of [['/og.png', 'image/png']]) {
+			const response = await request.get(path);
+			expect(response.ok(), path).toBe(true);
+			expect(response.headers()['content-type'], path).toContain(type);
+		}
 	});
 });
 

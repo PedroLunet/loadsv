@@ -15,6 +15,7 @@
 	import Code from '$site/components/Code.svelte';
 	import CopyButton from '$site/components/CopyButton.svelte';
 	import Icon from '$site/components/Icon.svelte';
+	import Meta from '$site/components/Meta.svelte';
 	import Chips from '$site/components/SpinnerChips.svelte';
 
 	type Step = 'idle' | 'loading' | 'done';
@@ -163,13 +164,10 @@ ${scriptEnd}
 <Arc size={32} color="#ff3e00" />`;
 </script>
 
-<svelte:head>
-	<title>loadsv — Loading indicators for Svelte</title>
-	<meta
-		name="description"
-		content="A lightweight library of beautiful loading indicators for Svelte."
-	/>
-</svelte:head>
+<Meta
+	title="loadsv — Loading indicators for Svelte"
+	description="A lightweight library of beautiful loading indicators for Svelte."
+/>
 
 {#snippet code(source: string, space = 'mt-3')}
 	<div class={['rounded-xl border border-neutral-200/60 bg-neutral-50/70', space]}>

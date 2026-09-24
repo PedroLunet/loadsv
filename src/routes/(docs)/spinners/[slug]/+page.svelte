@@ -3,6 +3,7 @@
 	import { neighbours } from '$site/catalog';
 	import CopyButton from '$site/components/CopyButton.svelte';
 	import Demo from '$site/components/Demo.svelte';
+	import Meta from '$site/components/Meta.svelte';
 	import Playground from '$site/components/Playground.svelte';
 	import Prose from '$site/components/Prose.svelte';
 	import Toc from '$site/components/Toc.svelte';
@@ -17,9 +18,9 @@
 	const toc = $derived([{ id: 'preview', title: 'Preview' }, ...content]);
 </script>
 
+<Meta title="{entry.name} — loadsv" description={entry.description} />
+
 <svelte:head>
-	<title>{entry.name} — loadsv</title>
-	<meta name="description" content={entry.description} />
 	<link rel="alternate" type="text/markdown" href={markdownPath(entry)} />
 </svelte:head>
 
