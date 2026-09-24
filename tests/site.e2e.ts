@@ -84,6 +84,24 @@ test.describe('home', () => {
 	});
 });
 
+test.describe('browse', () => {
+	test('shows every spinner once, by itself, linking to its page', async ({ page, request }) => {
+		const errors = watchConsole(page);
+		const spinners = await published(request);
+		await page.goto('/browse');
+
+		// Spark, the library's mark, leads the grid.
+		const links = page.getByRole('main').getByRole('listitem').getByRole('link');
+		await expect(links.first()).toHaveText('Spark');
+		const hrefs = await links.evaluateAll((all) => all.map((link) => link.getAttribute('href')));
+		expect(hrefs.sort()).toEqual(spinners.map((s) => s.markdown.replace(/\.md$/, '')).sort());
+
+		await links.filter({ hasText: 'Inchworm' }).click();
+		await expect(page).toHaveURL('/spinners/inchworm');
+		expect(errors).toEqual([]);
+	});
+});
+
 test.describe('in an app', () => {
 	test('shows every spinner once, in context, linking to its page', async ({ page, request }) => {
 		const errors = watchConsole(page);

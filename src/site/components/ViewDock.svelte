@@ -13,7 +13,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { Arc, BouncingDots, Spark } from '$lib';
+	import { Arc, Blocks, BouncingDots, Spark } from '$lib';
 	import { catalog } from '$site/catalog';
 	import { GITHUB_URL, NPM_URL } from '$site/links';
 	import Icon from './Icon.svelte';
@@ -31,8 +31,8 @@
 			route: '/(views)/browse',
 			href: resolve('/browse'),
 			label: 'Browse',
-			blurb: `All ${catalog.length}, each where it belongs`,
-			spinner: BouncingDots
+			blurb: `All ${catalog.length}, side by side`,
+			spinner: Blocks
 		},
 		{
 			route: '/(views)/in-an-app',
