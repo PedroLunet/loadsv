@@ -2,7 +2,7 @@
 
 A lightweight library of beautiful loading indicators for Svelte.
 
-- **26 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
+- **27 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
 - **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy. The one exception is `Snake`, whose arc stretches with `stroke-dasharray` and repaints each frame; its turn still runs on the compositor.
 - **Reduced motion built in.** With `prefers-reduced-motion`, spinners hold still and gently breathe instead.
 - **Styles you can override.** The library's CSS carries zero specificity, so any class you pass wins.
@@ -51,6 +51,7 @@ Spinners paint with `currentColor`, so they pick up the text color around them:
 | `Dual`          | 1000ms           | `cap`           |
 | `Eclipse`       | 1400ms           |                 |
 | `Flip`          | 1600ms           |                 |
+| `Handoff`       | 1800ms           |                 |
 | `Hourglass`     | 4000ms           |                 |
 | `InfinityLoop`  | 1600ms           |                 |
 | `Leap`          | 1500ms           |                 |

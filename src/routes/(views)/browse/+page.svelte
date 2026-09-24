@@ -1,5 +1,5 @@
 <!--
-	Browse: nothing to press. All 26 spinners at once, each living in the one piece of UI
+	Browse: nothing to press. All 27 spinners at once, each living in the one piece of UI
 	it suits best.
 -->
 <script lang="ts">
@@ -16,6 +16,7 @@
 		Dual,
 		Eclipse,
 		Flip,
+		Handoff,
 		Hourglass,
 		InfinityLoop,
 		Leap,
@@ -57,7 +58,7 @@
 	<title>Browse — loadsv</title>
 	<meta
 		name="description"
-		content="All 26 loadsv spinners, each shown in the piece of UI it suits best."
+		content="All 27 loadsv spinners, each shown in the piece of UI it suits best."
 	/>
 </svelte:head>
 
@@ -67,7 +68,7 @@
 			Spinners that fit right in.
 		</h1>
 		<p class="mt-4 max-w-md text-[16px] leading-relaxed text-pretty text-neutral-600">
-			26 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
+			27 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
 			they hold still for anyone who prefers less motion.
 		</p>
 		<div class="mt-7 flex flex-wrap items-center gap-2">
@@ -284,6 +285,16 @@
 					<div class="ml-4 h-2 w-1/2 rounded-full bg-neutral-100"></div>
 					<div class="h-2 w-1/4 rounded-full bg-neutral-200/80"></div>
 				</div>
+			</div>
+		</Tile>
+
+		<Tile slug="handoff" context="Signing in elsewhere">
+			<div class={[card, 'w-full max-w-64 p-4 text-center']}>
+				<p class={title}>Sign in to loadsv</p>
+				<p class={[muted, 'mt-0.5']}>We’ll bring you right back</p>
+				<span class={[secondary, 'mt-4 w-full justify-center']}
+					><Handoff size={16} /> Redirecting to GitHub</span
+				>
 			</div>
 		</Tile>
 

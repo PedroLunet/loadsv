@@ -31,7 +31,8 @@ export const durations = {
 	atom: 1200,
 	snake: 1500,
 	spark: 1400,
-	ribbon: 1600
+	ribbon: 1600,
+	handoff: 1800
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;

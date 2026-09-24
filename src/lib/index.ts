@@ -10,6 +10,7 @@ export { default as Comet } from './spinners/Comet.svelte';
 export { default as Dual } from './spinners/Dual.svelte';
 export { default as Eclipse } from './spinners/Eclipse.svelte';
 export { default as Flip } from './spinners/Flip.svelte';
+export { default as Handoff } from './spinners/Handoff.svelte';
 export { default as Hourglass } from './spinners/Hourglass.svelte';
 export { default as InfinityLoop } from './spinners/InfinityLoop.svelte';
 export { default as Leap } from './spinners/Leap.svelte';

@@ -129,6 +129,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'handoff',
+		name: 'Handoff',
+		importName: 'Handoff',
+		description: 'Two slanted pills that tuck together as they turn over, then fan back out.',
+		options: []
+	},
+	{
 		slug: 'hourglass',
 		name: 'Hourglass',
 		importName: 'Hourglass',
