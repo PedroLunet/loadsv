@@ -1,5 +1,5 @@
 <!--
-	Browse: nothing to press. All 27 spinners at once, each living in the one piece of UI
+	Browse: nothing to press. All 28 spinners at once, each living in the one piece of UI
 	it suits best.
 -->
 <script lang="ts">
@@ -18,6 +18,7 @@
 		Flip,
 		Handoff,
 		Hourglass,
+		Inchworm,
 		InfinityLoop,
 		Leap,
 		LinearDots,
@@ -58,7 +59,7 @@
 	<title>Browse — loadsv</title>
 	<meta
 		name="description"
-		content="All 27 loadsv spinners, each shown in the piece of UI it suits best."
+		content="All 28 loadsv spinners, each shown in the piece of UI it suits best."
 	/>
 </svelte:head>
 
@@ -68,7 +69,7 @@
 			Spinners that fit right in.
 		</h1>
 		<p class="mt-4 max-w-md text-[16px] leading-relaxed text-pretty text-neutral-600">
-			27 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
+			28 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
 			they hold still for anyone who prefers less motion.
 		</p>
 		<div class="mt-7 flex flex-wrap items-center gap-2">
@@ -295,6 +296,24 @@
 				<span class={[secondary, 'mt-4 w-full justify-center']}
 					><Handoff size={16} /> Redirecting to GitHub</span
 				>
+			</div>
+		</Tile>
+
+		<Tile slug="inchworm" context="Installing an app">
+			<div class="flex items-start gap-6 text-[11px]">
+				<div class="flex flex-col items-center gap-2">
+					<span class="size-10 rounded-[12px] bg-linear-to-br from-sky-300 to-indigo-500"></span>
+					<span class="text-neutral-500">Weather</span>
+				</div>
+				<!-- Drawn at 50, its outline is 40 across: the size of the icons beside it. -->
+				<div class="flex flex-col items-center gap-2">
+					<span class="-m-[5px] flex text-neutral-700"><Inchworm size={50} /></span>
+					<span class="text-neutral-900">Installing…</span>
+				</div>
+				<div class="flex flex-col items-center gap-2">
+					<span class="size-10 rounded-[12px] bg-linear-to-br from-amber-200 to-orange-400"></span>
+					<span class="text-neutral-500">Notes</span>
+				</div>
 			</div>
 		</Tile>
 

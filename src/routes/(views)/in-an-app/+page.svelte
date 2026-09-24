@@ -369,7 +369,7 @@ ${'</'}script>
 		<div>
 			<h2 class="text-[15px] font-medium text-neutral-950">Install</h2>
 			<p class="mt-1.5 text-[14px] leading-relaxed text-neutral-600">
-				One package, 27 components, no dependencies. The motion is plain CSS, and it holds still for
+				One package, 28 components, no dependencies. The motion is plain CSS, and it holds still for
 				anyone who prefers less of it.
 			</p>
 			<div

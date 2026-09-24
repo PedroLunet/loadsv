@@ -143,6 +143,14 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'inchworm',
+		name: 'Inchworm',
+		importName: 'Inchworm',
+		description:
+			'A worm inching round a rounded square, stretching round each corner, then gathering up.',
+		options: []
+	},
+	{
 		slug: 'infinity-loop',
 		name: 'Infinity loop',
 		importName: 'InfinityLoop',
