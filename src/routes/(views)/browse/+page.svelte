@@ -1,5 +1,5 @@
 <!--
-	Browse: nothing to press. All 24 spinners at once, each living in the one piece of UI
+	Browse: nothing to press. All 25 spinners at once, each living in the one piece of UI
 	it suits best.
 -->
 <script lang="ts">
@@ -26,6 +26,7 @@
 		Ripple,
 		Slide,
 		Snake,
+		Spark,
 		Swirl,
 		Wave
 	} from '$lib';
@@ -55,7 +56,7 @@
 	<title>Browse — loadsv</title>
 	<meta
 		name="description"
-		content="All 24 loadsv spinners, each shown in the piece of UI it suits best."
+		content="All 25 loadsv spinners, each shown in the piece of UI it suits best."
 	/>
 </svelte:head>
 
@@ -65,7 +66,7 @@
 			Spinners that fit right in.
 		</h1>
 		<p class="mt-4 max-w-md text-[16px] leading-relaxed text-pretty text-neutral-600">
-			24 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
+			25 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
 			they hold still for anyone who prefers less motion.
 		</p>
 		<div class="mt-7 flex flex-wrap items-center gap-2">
@@ -351,7 +352,7 @@
 			</div>
 		</Tile>
 
-		<Tile slug="dual" context="Buffering a video" span={3}>
+		<Tile slug="dual" context="Buffering a video">
 			<div
 				class="relative grid aspect-video w-full max-w-72 place-items-center overflow-hidden rounded-xl bg-linear-to-br from-neutral-700 to-neutral-900 text-white"
 			>
@@ -366,7 +367,7 @@
 			</div>
 		</Tile>
 
-		<Tile slug="blocks" context="An empty chart" span={3}>
+		<Tile slug="blocks" context="An empty chart">
 			<div class={[card, 'w-full max-w-80']}>
 				<div class="flex items-center justify-between border-b border-neutral-100 px-4 py-2.5">
 					<span class={title}>Revenue</span>
@@ -378,6 +379,20 @@
 					<Blocks size={22} />
 					<span class="text-[12.5px]">Crunching the numbers</span>
 				</div>
+			</div>
+		</Tile>
+
+		<Tile slug="spark" context="Generating an image">
+			<div class="w-full max-w-48">
+				<div
+					class="grid aspect-[4/3] place-items-center rounded-xl bg-linear-to-br from-violet-100 via-fuchsia-50 to-amber-50 text-violet-500 ring-1 ring-neutral-200/70"
+				>
+					<Spark size={28} />
+				</div>
+				<p class="mt-3 flex justify-between text-[12.5px]">
+					<span class="text-neutral-900">Painting variations</span>
+					<span class="text-neutral-400 tabular-nums">2 of 4</span>
+				</p>
 			</div>
 		</Tile>
 

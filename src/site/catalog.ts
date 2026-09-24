@@ -199,6 +199,13 @@ export const catalog: readonly Entry[] = [
 		options: [cap]
 	},
 	{
+		slug: 'spark',
+		name: 'Spark',
+		importName: 'Spark',
+		description: 'Eight petals, long and short, flaring in a wave while the spark slowly turns.',
+		options: []
+	},
+	{
 		slug: 'swirl',
 		name: 'Swirl',
 		importName: 'Swirl',
