@@ -171,6 +171,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'ribbon',
+		name: 'Ribbon',
+		importName: 'Ribbon',
+		description: 'Three pills in an S, flowing into its mirror and back like a ribbon.',
+		options: []
+	},
+	{
 		slug: 'ring',
 		name: 'Ring',
 		importName: 'Ring',

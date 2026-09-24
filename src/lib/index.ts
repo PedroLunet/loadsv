@@ -16,6 +16,7 @@ export { default as Leap } from './spinners/Leap.svelte';
 export { default as LinearDots } from './spinners/LinearDots.svelte';
 export { default as NewtonsCradle } from './spinners/NewtonsCradle.svelte';
 export { default as Pulse } from './spinners/Pulse.svelte';
+export { default as Ribbon } from './spinners/Ribbon.svelte';
 export { default as Ring } from './spinners/Ring.svelte';
 export { default as Ripple } from './spinners/Ripple.svelte';
 export { default as Slide } from './spinners/Slide.svelte';

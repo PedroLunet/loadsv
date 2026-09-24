@@ -104,7 +104,7 @@
 	const exchanges = [
 		[
 			'What’s new in loadsv?',
-			'Thirteen new spinners, 25 in all. Snake is the only one that repaints.'
+			'Fourteen new spinners, 26 in all. Snake is the only one that repaints.'
 		],
 		['Do they respect reduced motion?', 'Yes. They hold still and breathe gently instead.'],
 		[
@@ -216,7 +216,7 @@ ${scriptEnd}
 		<a
 			href="#spinners"
 			class="mt-4 text-[13px] text-neutral-500 underline decoration-neutral-300 underline-offset-4 hover:text-neutral-900"
-			>All 25 spinners</a
+			>All 26 spinners</a
 		>
 	</section>
 

@@ -318,19 +318,20 @@ test.describe('search', () => {
 		await expect(dialog).toBeVisible();
 		await expect(input).toBeFocused();
 
-		// Ring and Ripple start with "ri", so they lead; descriptions mentioning rings follow.
+		// Ribbon, Ring and Ripple start with "ri", so they lead; descriptions mentioning rings follow.
 		await input.fill('ri');
 		const options = dialog.getByRole('option');
-		await expect(options.nth(0)).toContainText('Ring');
-		await expect(options.nth(1)).toContainText('Ripple');
+		await expect(options.nth(0)).toContainText('Ribbon');
+		await expect(options.nth(1)).toContainText('Ring');
+		await expect(options.nth(2)).toContainText('Ripple');
 		await expect(options.first()).toHaveAttribute('aria-selected', 'true');
 
 		await input.press('ArrowDown');
 		await expect(options.nth(1)).toHaveAttribute('aria-selected', 'true');
-		await expect(input).toHaveAttribute('aria-activedescendant', /ripple$/);
+		await expect(input).toHaveAttribute('aria-activedescendant', /ring$/);
 
 		await input.press('Enter');
-		await expect(page).toHaveURL('/spinners/ripple');
+		await expect(page).toHaveURL('/spinners/ring');
 		await expect(dialog).toBeHidden();
 	});
 

@@ -1,5 +1,5 @@
 <!--
-	Browse: nothing to press. All 25 spinners at once, each living in the one piece of UI
+	Browse: nothing to press. All 26 spinners at once, each living in the one piece of UI
 	it suits best.
 -->
 <script lang="ts">
@@ -22,6 +22,7 @@
 		LinearDots,
 		NewtonsCradle,
 		Pulse,
+		Ribbon,
 		Ring,
 		Ripple,
 		Slide,
@@ -56,7 +57,7 @@
 	<title>Browse — loadsv</title>
 	<meta
 		name="description"
-		content="All 25 loadsv spinners, each shown in the piece of UI it suits best."
+		content="All 26 loadsv spinners, each shown in the piece of UI it suits best."
 	/>
 </svelte:head>
 
@@ -66,7 +67,7 @@
 			Spinners that fit right in.
 		</h1>
 		<p class="mt-4 max-w-md text-[16px] leading-relaxed text-pretty text-neutral-600">
-			25 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
+			26 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
 			they hold still for anyone who prefers less motion.
 		</p>
 		<div class="mt-7 flex flex-wrap items-center gap-2">
@@ -264,6 +265,25 @@
 				<span class="flex items-center gap-2 text-[12px] text-neutral-500"
 					><Wave size={14} /> Transcribing</span
 				>
+			</div>
+		</Tile>
+
+		<Tile slug="ribbon" context="Formatting on save">
+			<div class={[card, 'w-full max-w-64 overflow-hidden']}>
+				<div
+					class="flex items-center justify-between border-b border-neutral-100 px-3.5 py-2.5 text-[12.5px]"
+				>
+					<span class="font-mono text-neutral-900">+page.svelte</span>
+					<span class="flex items-center gap-1.5 text-neutral-500"
+						><Ribbon size={16} /> Formatting</span
+					>
+				</div>
+				<div class="space-y-2.5 p-3.5">
+					<div class="h-2 w-2/5 rounded-full bg-neutral-200/80"></div>
+					<div class="ml-4 h-2 w-3/5 rounded-full bg-neutral-100"></div>
+					<div class="ml-4 h-2 w-1/2 rounded-full bg-neutral-100"></div>
+					<div class="h-2 w-1/4 rounded-full bg-neutral-200/80"></div>
+				</div>
 			</div>
 		</Tile>
 

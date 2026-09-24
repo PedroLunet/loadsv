@@ -30,7 +30,8 @@ export const durations = {
 	hourglass: 4000,
 	atom: 1200,
 	snake: 1500,
-	spark: 1400
+	spark: 1400,
+	ribbon: 1600
 } satisfies Record<string, number>;
 
 export type SpinnerName = keyof typeof durations;
