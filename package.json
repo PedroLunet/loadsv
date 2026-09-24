@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"description": "A lightweight library of beautiful loading indicators for Svelte. Pure CSS, no dependencies.",
 	"license": "MIT",
-	"homepage": "https://loadsv.pedrolunet.workers.dev",
+	"homepage": "https://loadsv.pedrolu.net",
 	"bugs": "https://github.com/PedroLunet/loadsv/issues",
 	"type": "module",
 	"repository": {
