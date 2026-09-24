@@ -13,7 +13,7 @@
 	import { afterNavigate } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import { Arc, BouncingDots, Snake, Spark } from '$lib';
+	import { Arc, BouncingDots, Spark } from '$lib';
 	import { catalog } from '$site/catalog';
 	import { GITHUB_URL, NPM_URL } from '$site/links';
 	import Icon from './Icon.svelte';
@@ -38,8 +38,8 @@
 			route: '/(views)/in-an-app',
 			href: resolve('/in-an-app'),
 			label: 'In an app',
-			blurb: 'Swap them into a real dashboard',
-			spinner: Snake
+			blurb: 'Each one where it belongs',
+			spinner: BouncingDots
 		}
 	];
 	const current = $derived(views.findIndex((view) => view.route === page.route.id));

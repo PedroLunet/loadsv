@@ -73,7 +73,7 @@ test.describe('home', () => {
 	});
 
 	test('spinners are hidden from assistive technology', async ({ page }) => {
-		for (const path of ['/', '/browse']) {
+		for (const path of ['/', '/browse', '/in-an-app']) {
 			await page.goto(path);
 			const spinners = await page.locator('main .lsv').all();
 			expect(spinners.length, path).toBeGreaterThan(0);
@@ -84,11 +84,11 @@ test.describe('home', () => {
 	});
 });
 
-test.describe('browse', () => {
+test.describe('in an app', () => {
 	test('shows every spinner once, in context, linking to its page', async ({ page, request }) => {
 		const errors = watchConsole(page);
 		const spinners = await published(request);
-		await page.goto('/browse');
+		await page.goto('/in-an-app');
 
 		const links = page.getByRole('main').getByRole('listitem').getByRole('link');
 		const hrefs = await links.evaluateAll((all) => all.map((link) => link.getAttribute('href')));
@@ -96,31 +96,6 @@ test.describe('browse', () => {
 
 		await links.filter({ hasText: 'Hourglass' }).click();
 		await expect(page).toHaveURL('/spinners/hourglass');
-		expect(errors).toEqual([]);
-	});
-});
-
-test.describe('in an app', () => {
-	test('one choice swaps the spinner everywhere, and a redeploy runs', async ({ page }) => {
-		const errors = watchConsole(page);
-		await page.goto('/in-an-app');
-		await hydrated(page);
-		const main = page.getByRole('main');
-
-		const arc = main
-			.getByRole('group', { name: 'Spinner' })
-			.getByRole('button', { name: 'Arc', exact: true });
-		await arc.click();
-		await expect(arc).toHaveAttribute('aria-pressed', 'true');
-		await expect(main.locator('pre')).toContainText("import { Arc } from 'loadsv';");
-		await expect(main.getByRole('link', { name: 'Open its playground' })).toHaveAttribute(
-			'href',
-			'/spinners/arc'
-		);
-
-		await main.getByRole('button', { name: 'Redeploy' }).click();
-		await expect(main.getByRole('status')).toContainText('Deploying loadsv-docs');
-		await expect(main.getByText('Redeploy of feat: add Snake spinner')).toBeVisible();
 		expect(errors).toEqual([]);
 	});
 });
