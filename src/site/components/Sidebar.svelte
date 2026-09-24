@@ -23,7 +23,7 @@
 		<a href={resolve('/')} class={item} aria-current={current(resolve('/'))}>Overview</a>
 		<ul>
 			{#each catalog as entry (entry.slug)}
-				{@const href = resolve(`/spinners/${entry.slug}`)}
+				{@const href = resolve('/(docs)/spinners/[slug]', { slug: entry.slug })}
 				<li><a {href} class={item} aria-current={current(href)}>{entry.name}</a></li>
 			{/each}
 		</ul>

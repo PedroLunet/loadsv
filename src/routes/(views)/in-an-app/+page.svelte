@@ -203,7 +203,7 @@ ${'</'}script>
 			<span class="mx-1 text-neutral-300">·</span>{durations[chosen]}ms
 			<span class="mx-1 text-neutral-300">·</span>
 			<a
-				href={resolve(`/spinners/${chosen}`)}
+				href={resolve('/(docs)/spinners/[slug]', { slug: chosen })}
 				class="underline decoration-neutral-300 underline-offset-4 hover:text-neutral-900"
 				>Open its playground</a
 			>

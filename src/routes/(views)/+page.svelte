@@ -551,7 +551,7 @@ ${scriptEnd}
 				{@const Spinner = componentOf(entry)}
 				<li>
 					<a
-						href={resolve(`/spinners/${entry.slug}`)}
+						href={resolve('/(docs)/spinners/[slug]', { slug: entry.slug })}
 						class="flex h-11 items-center gap-3 border-b border-neutral-100 text-[14px] text-neutral-800 transition-colors duration-150 [--lsv-play-state:paused] hover:text-neutral-950 hover:[--lsv-play-state:running] focus-visible:[--lsv-play-state:running]"
 					>
 						<Spinner size={16} />

@@ -25,7 +25,7 @@
 </script>
 
 <li class={spans[span]}>
-	<a href={resolve(`/spinners/${slug}`)} class="group block">
+	<a href={resolve('/(docs)/spinners/[slug]', { slug })} class="group block">
 		<div
 			aria-hidden="true"
 			class="relative grid h-52 place-items-center overflow-hidden rounded-2xl bg-neutral-50 px-6 ring-1 ring-neutral-200/60 transition-[box-shadow,scale] duration-150 ease-out ring-inset group-hover:ring-neutral-300 group-active:scale-[0.99]"

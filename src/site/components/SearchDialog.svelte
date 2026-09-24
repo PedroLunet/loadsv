@@ -48,7 +48,7 @@
 
 	function choose(entry: Entry) {
 		search.open = false;
-		goto(resolve(`/spinners/${entry.slug}`));
+		goto(resolve('/(docs)/spinners/[slug]', { slug: entry.slug }));
 	}
 
 	function onkeydown(event: KeyboardEvent) {
