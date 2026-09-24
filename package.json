@@ -1,7 +1,7 @@
 {
 	"name": "loadsv",
 	"version": "0.1.0",
-	"description": "Beautiful loading indicators for Svelte.",
+	"description": "A lightweight library of beautiful loading indicators for Svelte. Pure CSS, no dependencies.",
 	"license": "MIT",
 	"type": "module",
 	"repository": {
@@ -10,10 +10,18 @@
 	},
 	"keywords": [
 		"svelte",
+		"svelte5",
+		"sveltekit",
+		"svelte-component",
 		"spinner",
+		"spinners",
 		"loader",
 		"loading",
-		"indicator"
+		"loading-indicator",
+		"loading-spinner",
+		"indicator",
+		"animation",
+		"css-animation"
 	],
 	"files": [
 		"dist",
