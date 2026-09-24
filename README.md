@@ -2,6 +2,8 @@
 
 A lightweight library of beautiful loading indicators for Svelte.
 
+[![Every loadsv spinner, animated](https://loadsv.pedrolu.net/preview.svg)](https://loadsv.pedrolu.net/browse)
+
 **[See them live](https://loadsv.pedrolu.net)** · [Browse all 28](https://loadsv.pedrolu.net/browse) · [llms.txt](https://loadsv.pedrolu.net/llms.txt)
 
 - **28 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.

@@ -477,8 +477,11 @@ test.describe('link previews', () => {
 		}
 	});
 
-	test('serves the preview card', async ({ request }) => {
-		for (const [path, type] of [['/og.png', 'image/png']]) {
+	test('serves the preview card and the README preview', async ({ request }) => {
+		for (const [path, type] of [
+			['/og.png', 'image/png'],
+			['/preview.svg', 'image/svg+xml']
+		]) {
 			const response = await request.get(path);
 			expect(response.ok(), path).toBe(true);
 			expect(response.headers()['content-type'], path).toContain(type);
