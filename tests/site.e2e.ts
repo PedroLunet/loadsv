@@ -101,6 +101,39 @@ test.describe('browse', () => {
 		await expect(page).toHaveURL('/spinners/inchworm');
 		expect(errors).toEqual([]);
 	});
+
+	test('the toolbar resizes and recolors every spinner, and resets', async ({ page }) => {
+		const errors = watchConsole(page);
+		await page.goto('/browse');
+		await hydrated(page);
+
+		const main = page.getByRole('main');
+		const spinners = main.getByRole('list').locator('.lsv');
+		const colors = main.getByRole('group', { name: 'Color' });
+		const reset = main.getByRole('button', { name: 'Reset' });
+		await expect(reset).toBeDisabled();
+		await expect(spinners.first()).toHaveCSS('width', '40px');
+
+		// The radios are visually hidden inside their labels, so click what a person would.
+		await main.getByText('Large', { exact: true }).click();
+		await colors.getByTitle('Orange').click();
+		await expect(colors.getByRole('radio', { name: 'Orange' })).toBeChecked();
+		for (const spinner of await spinners.all()) {
+			await expect(spinner).toHaveCSS('width', '64px');
+			await expect(spinner).toHaveCSS('color', 'rgb(255, 62, 0)');
+		}
+
+		// Any other color comes from the native picker, and then no preset stays chosen.
+		await colors.getByLabel('Custom color').fill('#0891b2');
+		await expect(spinners.last()).toHaveCSS('color', 'rgb(8, 145, 178)');
+		await expect(colors.getByRole('radio', { checked: true })).toHaveCount(0);
+
+		await reset.click();
+		await expect(spinners.first()).toHaveCSS('width', '40px');
+		await expect(spinners.first()).toHaveCSS('color', 'rgb(38, 38, 38)');
+		await expect(reset).toBeDisabled();
+		expect(errors).toEqual([]);
+	});
 });
 
 test.describe('in an app', () => {
