@@ -6,14 +6,16 @@ A lightweight library of beautiful loading indicators for Svelte.
 - **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy. The one exception is `Snake`, whose arc stretches with `stroke-dasharray` and repaints each frame; its turn still runs on the compositor.
 - **Reduced motion built in.** With `prefers-reduced-motion`, spinners hold still and gently breathe instead.
 - **Styles you can override.** The library's CSS carries zero specificity, so any class you pass wins.
+- **Only what you import.** Spinners are named exports, so the ones you don't use never reach your bundle. Nothing touches the browser, so they render on the server as-is.
 
 ## Install
 
 ```sh
 npm install loadsv
+# or: pnpm add loadsv · yarn add loadsv · bun add loadsv
 ```
 
-Requires Svelte 5.16 or later.
+Requires Svelte 5.16 or later. No other dependencies.
 
 ## Usage
 
@@ -35,7 +37,20 @@ Spinners paint with `currentColor`, so they pick up the text color around them:
 </button>
 ```
 
+When a whole area is waiting, give the spinner room and a sentence saying what it's waiting for:
+
+```svelte
+{#await invoices}
+	<Blocks size={28} />
+	<p>Fetching invoices…</p>
+{:then rows}
+	<InvoiceList {rows} />
+{/await}
+```
+
 ## Spinners
+
+Every spinner is a named export: `import { Spark, Ribbon } from 'loadsv'`.
 
 | Component       | Default duration | Extra props     |
 | --------------- | ---------------- | --------------- |
@@ -88,7 +103,11 @@ Some spinners take more:
 | `easing` | `'linear' \| 'ease-in-out' \| 'stacked'` | `'linear'` | How it moves through each turn. `stacked` layers the other two, so the speed swells without stopping. |
 | `cap`    | `'round' \| 'flat'`                      | `'round'`  | How the ends of the stroke are drawn.                                                                 |
 
-The types are exported too: `SpinnerProps`, `PlayState`, `Easing` and `Cap`.
+Every prop is typed and documented, so your editor explains it on hover. The types are exported too: `SpinnerProps`, `PlayState`, `Easing` and `Cap`.
+
+```ts
+import type { SpinnerProps } from 'loadsv';
+```
 
 ## CSS custom properties
 
@@ -126,13 +145,18 @@ Inspired by [loading.dev](https://loading.dev). Same ideas, written from scratch
 The package lives in `src/lib`. The docs site, built with SvelteKit and deployed to Cloudflare Workers, lives in `src/routes` and `src/site`.
 
 ```sh
+npm install
 npm run dev      # docs site with hot reload
+npm run lint     # Prettier and ESLint
+npm run check    # type-check with svelte-check
 npm run test     # unit tests, then end-to-end tests against a production build
 npm run package  # build the package into dist/ and lint it with publint
 npm run build    # build the docs site
 npm run preview  # serve the built site locally with Wrangler
 ```
 
+Issues and pull requests are welcome on [GitHub](https://github.com/PedroLunet/loadsv/issues).
+
 ## License
 
-MIT
+[MIT](LICENSE) © Pedro Lunet
