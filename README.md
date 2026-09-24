@@ -2,6 +2,8 @@
 
 A lightweight library of beautiful loading indicators for Svelte.
 
+**[See them live](https://loadsv.pedrolunet.workers.dev)** · [Browse all 28](https://loadsv.pedrolunet.workers.dev/browse) · [llms.txt](https://loadsv.pedrolunet.workers.dev/llms.txt)
+
 - **28 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
 - **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy. The one exception is `Snake`, whose arc stretches with `stroke-dasharray` and repaints each frame; its turn still runs on the compositor.
 - **Reduced motion built in.** With `prefers-reduced-motion`, spinners hold still and gently breathe instead.
@@ -50,38 +52,38 @@ When a whole area is waiting, give the spinner room and a sentence saying what i
 
 ## Spinners
 
-Every spinner is a named export: `import { Spark, Ribbon } from 'loadsv'`.
+Every spinner is a named export: `import { Spark, Ribbon } from 'loadsv'`. Each name links to its page on the site, with a live playground for every option.
 
-| Component       | Default duration | Extra props     |
-| --------------- | ---------------- | --------------- |
-| `Arc`           | 800ms            | `easing`, `cap` |
-| `Atom`          | 1200ms           |                 |
-| `Blocks`        | 1200ms           |                 |
-| `Bounce`        | 900ms            |                 |
-| `BouncingDots`  | 1000ms           |                 |
-| `CircularDots`  | 800ms            |                 |
-| `Classic`       | 1000ms           |                 |
-| `Clock`         | 1000ms           |                 |
-| `Comet`         | 800ms            |                 |
-| `Dual`          | 1000ms           | `cap`           |
-| `Eclipse`       | 1400ms           |                 |
-| `Flip`          | 1600ms           |                 |
-| `Handoff`       | 1800ms           |                 |
-| `Hourglass`     | 4000ms           |                 |
-| `Inchworm`      | 2000ms           |                 |
-| `InfinityLoop`  | 1600ms           |                 |
-| `Leap`          | 1500ms           |                 |
-| `LinearDots`    | 1000ms           |                 |
-| `NewtonsCradle` | 1200ms           |                 |
-| `Pulse`         | 1200ms           |                 |
-| `Ribbon`        | 1600ms           |                 |
-| `Ring`          | 800ms            | `easing`, `cap` |
-| `Ripple`        | 1800ms           |                 |
-| `Slide`         | 2400ms           |                 |
-| `Snake`         | 1500ms           | `cap`           |
-| `Spark`         | 1400ms           |                 |
-| `Swirl`         | 1000ms           |                 |
-| `Wave`          | 1000ms           |                 |
+| Component                                                                        | Default duration | Extra props     |
+| -------------------------------------------------------------------------------- | ---------------- | --------------- |
+| [`Arc`](https://loadsv.pedrolunet.workers.dev/spinners/arc)                      | 800ms            | `easing`, `cap` |
+| [`Atom`](https://loadsv.pedrolunet.workers.dev/spinners/atom)                    | 1200ms           |                 |
+| [`Blocks`](https://loadsv.pedrolunet.workers.dev/spinners/blocks)                | 1200ms           |                 |
+| [`Bounce`](https://loadsv.pedrolunet.workers.dev/spinners/bounce)                | 900ms            |                 |
+| [`BouncingDots`](https://loadsv.pedrolunet.workers.dev/spinners/bouncing-dots)   | 1000ms           |                 |
+| [`CircularDots`](https://loadsv.pedrolunet.workers.dev/spinners/circular-dots)   | 800ms            |                 |
+| [`Classic`](https://loadsv.pedrolunet.workers.dev/spinners/classic)              | 1000ms           |                 |
+| [`Clock`](https://loadsv.pedrolunet.workers.dev/spinners/clock)                  | 1000ms           |                 |
+| [`Comet`](https://loadsv.pedrolunet.workers.dev/spinners/comet)                  | 800ms            |                 |
+| [`Dual`](https://loadsv.pedrolunet.workers.dev/spinners/dual)                    | 1000ms           | `cap`           |
+| [`Eclipse`](https://loadsv.pedrolunet.workers.dev/spinners/eclipse)              | 1400ms           |                 |
+| [`Flip`](https://loadsv.pedrolunet.workers.dev/spinners/flip)                    | 1600ms           |                 |
+| [`Handoff`](https://loadsv.pedrolunet.workers.dev/spinners/handoff)              | 1800ms           |                 |
+| [`Hourglass`](https://loadsv.pedrolunet.workers.dev/spinners/hourglass)          | 4000ms           |                 |
+| [`Inchworm`](https://loadsv.pedrolunet.workers.dev/spinners/inchworm)            | 2000ms           |                 |
+| [`InfinityLoop`](https://loadsv.pedrolunet.workers.dev/spinners/infinity-loop)   | 1600ms           |                 |
+| [`Leap`](https://loadsv.pedrolunet.workers.dev/spinners/leap)                    | 1500ms           |                 |
+| [`LinearDots`](https://loadsv.pedrolunet.workers.dev/spinners/linear-dots)       | 1000ms           |                 |
+| [`NewtonsCradle`](https://loadsv.pedrolunet.workers.dev/spinners/newtons-cradle) | 1200ms           |                 |
+| [`Pulse`](https://loadsv.pedrolunet.workers.dev/spinners/pulse)                  | 1200ms           |                 |
+| [`Ribbon`](https://loadsv.pedrolunet.workers.dev/spinners/ribbon)                | 1600ms           |                 |
+| [`Ring`](https://loadsv.pedrolunet.workers.dev/spinners/ring)                    | 800ms            | `easing`, `cap` |
+| [`Ripple`](https://loadsv.pedrolunet.workers.dev/spinners/ripple)                | 1800ms           |                 |
+| [`Slide`](https://loadsv.pedrolunet.workers.dev/spinners/slide)                  | 2400ms           |                 |
+| [`Snake`](https://loadsv.pedrolunet.workers.dev/spinners/snake)                  | 1500ms           | `cap`           |
+| [`Spark`](https://loadsv.pedrolunet.workers.dev/spinners/spark)                  | 1400ms           |                 |
+| [`Swirl`](https://loadsv.pedrolunet.workers.dev/spinners/swirl)                  | 1000ms           |                 |
+| [`Wave`](https://loadsv.pedrolunet.workers.dev/spinners/wave)                    | 1000ms           |                 |
 
 ## Props
 
