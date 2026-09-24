@@ -55,7 +55,7 @@ export const catalog: readonly Entry[] = [
 		slug: 'atom',
 		name: 'Atom',
 		importName: 'Atom',
-		description: 'Three rings turning over inside a circle, each on its own axis.',
+		description: 'Three rings turning over inside a circle, a third of a turn at a time.',
 		options: []
 	},
 	{

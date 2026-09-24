@@ -59,7 +59,7 @@ Every spinner is a named export: `import { Spark, Ribbon } from 'loadsv'`. Each 
 | Component                                                             | Default duration | Extra props     |
 | --------------------------------------------------------------------- | ---------------- | --------------- |
 | [`Arc`](https://loadsv.pedrolu.net/spinners/arc)                      | 800ms            | `easing`, `cap` |
-| [`Atom`](https://loadsv.pedrolu.net/spinners/atom)                    | 1200ms           |                 |
+| [`Atom`](https://loadsv.pedrolu.net/spinners/atom)                    | 1800ms           |                 |
 | [`Blocks`](https://loadsv.pedrolu.net/spinners/blocks)                | 1200ms           |                 |
 | [`Bounce`](https://loadsv.pedrolu.net/spinners/bounce)                | 900ms            |                 |
 | [`BouncingDots`](https://loadsv.pedrolu.net/spinners/bouncing-dots)   | 1000ms           |                 |

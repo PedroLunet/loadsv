@@ -1,6 +1,6 @@
 <!--
 	@component
-	Three rings turning over inside a circle, each on its own axis.
+	Three rings turning over inside a circle, a third of a turn at a time.
 -->
 <script lang="ts">
 	import Root from '../internal/Root.svelte';
@@ -42,39 +42,54 @@
 		border-width: calc(var(--lsv-size) * 1.25 / 24);
 		rotate: calc(var(--k) * 60deg);
 		animation:
-			tumble var(--_duration) linear infinite,
+			tumble var(--_duration) infinite,
 			edge var(--_duration) linear infinite;
 		animation-delay: calc(var(--_duration) * var(--k) / -3);
 		animation-play-state: var(--_play-state);
 	}
 
+	/*
+	 * A third of a turn at a time, eased in and out, then a pause. The rings are a third of a
+	 * turn apart, so they all move and settle together, and each settles at the angle the
+	 * next one left: the figure comes to rest as it started, turned 60°.
+	 */
 	@keyframes tumble {
-		from {
+		0% {
 			transform: rotateY(0);
+			animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
 		}
-		to {
-			transform: rotateY(1turn);
+		33.333% {
+			transform: rotateY(120deg);
+			animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+		}
+		66.667% {
+			transform: rotateY(240deg);
+			animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+		}
+		100% {
+			transform: rotateY(360deg);
 		}
 	}
 
 	/*
 	 * Turned nearly edge-on, a ring's sides thin to a fraction of a pixel and break up into
-	 * dotted hairlines. So it fades out as it narrows, stays hidden while it's under a fifth
-	 * of its width (a quarter and three quarters of the way round), and fades back in.
+	 * dotted hairlines. So it fades out as it narrows past 54°, stays hidden while it's under
+	 * a fifth of its width (79.2° to 100.8°), and is back by the pause at 120°; the same,
+	 * mirrored, round 270°. The times are when the eased turn reaches those angles.
 	 */
 	@keyframes edge {
 		0%,
-		15%,
-		35%,
-		65%,
-		85%,
+		16.08%,
+		33.333%,
+		66.667%,
+		83.92%,
 		100% {
 			opacity: 1;
 		}
-		22%,
-		28%,
-		72%,
-		78% {
+		18.644%,
+		21.934%,
+		78.066%,
+		81.356% {
 			opacity: 0;
 		}
 	}

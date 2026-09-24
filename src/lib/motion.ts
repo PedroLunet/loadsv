@@ -28,7 +28,7 @@ export const durations = {
 	bounce: 900,
 	'newtons-cradle': 1200,
 	hourglass: 4000,
-	atom: 1200,
+	atom: 1800,
 	snake: 1500,
 	spark: 1400,
 	ribbon: 1600,
