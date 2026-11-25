@@ -158,6 +158,13 @@ export const catalog: readonly Entry[] = [
 		options: []
 	},
 	{
+		slug: 'issue',
+		name: 'Issue',
+		importName: 'Issue',
+		description: 'A GitHub-style issue icon alternating between open and draft as it spins.',
+		options: []
+	},
+	{
 		slug: 'leap',
 		name: 'Leap',
 		importName: 'Leap',

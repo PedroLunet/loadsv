@@ -1,5 +1,5 @@
 <!--
-	In an app: nothing to press. All 28 spinners at once, each living in the one piece of UI
+	In an app: nothing to press. All 29 spinners at once, each living in the one piece of UI
 	it suits best.
 -->
 <script lang="ts">
@@ -20,6 +20,7 @@
 		Hourglass,
 		Inchworm,
 		InfinityLoop,
+		Issue,
 		Leap,
 		LinearDots,
 		NewtonsCradle,
@@ -58,7 +59,7 @@
 
 <Meta
 	title="In an app — loadsv"
-	description="All 28 loadsv spinners, each shown in the piece of UI it suits best."
+	description="All 29 loadsv spinners, each shown in the piece of UI it suits best."
 />
 
 <div class="mx-auto max-w-[70rem] px-6">
@@ -67,7 +68,7 @@
 			Spinners that fit right in.
 		</h1>
 		<p class="mt-4 max-w-md text-[16px] leading-relaxed text-pretty text-neutral-600">
-			28 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
+			29 loading indicators for Svelte, each shown where it belongs. Pure CSS, no dependencies, and
 			they hold still for anyone who prefers less motion.
 		</p>
 		<div class="mt-7 flex flex-wrap items-center gap-2">
@@ -383,6 +384,27 @@
 				</div>
 				<p class="mt-4 text-[14px] font-medium text-neutral-900">Syncing your library</p>
 				<p class={[muted, 'mt-0.5']}>1,208 of 1,530 photos</p>
+			</div>
+		</Tile>
+
+		<Tile slug="issue" context="In an issue list">
+			<div class={[card, 'w-full max-w-64 divide-y divide-neutral-100 text-[12.5px]']}>
+				<div class="flex items-center gap-2.5 px-3.5 py-2.5">
+					<span class="text-neutral-600"><Issue size={16} /></span>
+					<div class="min-w-0 flex-1">
+						<p class="truncate font-medium text-neutral-900">Fix flaky tests</p>
+						<p class="text-[11.5px] text-neutral-400">Refreshing state…</p>
+					</div>
+					<span class="text-[11px] text-neutral-400">#241</span>
+				</div>
+				<div class="flex items-center gap-2.5 px-3.5 py-2.5 text-emerald-600">
+					<Icon name="check" size={16} />
+					<div class="min-w-0 flex-1">
+						<p class="truncate text-neutral-900">Refresh the preview</p>
+						<p class="text-[11.5px] text-neutral-400">Closed</p>
+					</div>
+					<span class="text-[11px] text-neutral-400">#242</span>
+				</div>
 			</div>
 		</Tile>
 
