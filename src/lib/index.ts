@@ -14,6 +14,7 @@ export { default as Handoff } from './spinners/Handoff.svelte';
 export { default as Hourglass } from './spinners/Hourglass.svelte';
 export { default as Inchworm } from './spinners/Inchworm.svelte';
 export { default as InfinityLoop } from './spinners/InfinityLoop.svelte';
+export { default as Issue } from './spinners/Issue.svelte';
 export { default as Leap } from './spinners/Leap.svelte';
 export { default as LinearDots } from './spinners/LinearDots.svelte';
 export { default as NewtonsCradle } from './spinners/NewtonsCradle.svelte';

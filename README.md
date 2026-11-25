@@ -4,10 +4,10 @@ A lightweight library of beautiful loading indicators for Svelte.
 
 [![Every loadsv spinner, animated](https://loadsv.pedrolu.net/preview.svg)](https://loadsv.pedrolu.net/browse)
 
-**[See them live](https://loadsv.pedrolu.net)** · [Browse all 28](https://loadsv.pedrolu.net/browse) · [llms.txt](https://loadsv.pedrolu.net/llms.txt)
+**[See them live](https://loadsv.pedrolu.net)** · [Browse all 29](https://loadsv.pedrolu.net/browse) · [llms.txt](https://loadsv.pedrolu.net/llms.txt)
 
-- **28 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
-- **Compositor-only animation.** Everything moves with `transform` and `opacity`, so spinners stay smooth while the page is busy. The one exception is `Snake`, whose arc stretches with `stroke-dasharray` and repaints each frame; its turn still runs on the compositor.
+- **29 spinners**, each a single dependency-free component. The motion is pure CSS: no JavaScript runs while they play.
+- **Compositor-friendly animation.** Spinners move with `transform` and `opacity` wherever they can, so they stay smooth while the page is busy. `Snake` and `Issue` also animate `stroke-dasharray` and repaint while they morph; both keep their turns on the compositor.
 - **Reduced motion built in.** With `prefers-reduced-motion`, spinners hold still and gently breathe instead.
 - **Styles you can override.** The library's CSS carries zero specificity, so any class you pass wins.
 - **Only what you import.** Spinners are named exports, so the ones you don't use never reach your bundle. Nothing touches the browser, so they render on the server as-is.
@@ -74,6 +74,7 @@ Every spinner is a named export: `import { Spark, Ribbon } from 'loadsv'`. Each 
 | [`Hourglass`](https://loadsv.pedrolu.net/spinners/hourglass)          | 4000ms           |                 |
 | [`Inchworm`](https://loadsv.pedrolu.net/spinners/inchworm)            | 2000ms           |                 |
 | [`InfinityLoop`](https://loadsv.pedrolu.net/spinners/infinity-loop)   | 1600ms           |                 |
+| [`Issue`](https://loadsv.pedrolu.net/spinners/issue)                  | 2400ms           |                 |
 | [`Leap`](https://loadsv.pedrolu.net/spinners/leap)                    | 1500ms           |                 |
 | [`LinearDots`](https://loadsv.pedrolu.net/spinners/linear-dots)       | 1000ms           |                 |
 | [`NewtonsCradle`](https://loadsv.pedrolu.net/spinners/newtons-cradle) | 1200ms           |                 |
